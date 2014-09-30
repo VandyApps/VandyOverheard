@@ -1,0 +1,579 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		FC17673E19DB3650007085D3 /* VONewsFeedPostCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FC17673D19DB3650007085D3 /* VONewsFeedPostCell.m */; };
+		FC26EA3819D8C5CE00678927 /* VONetworkAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = FC26EA3719D8C5CE00678927 /* VONetworkAdapter.m */; };
+		FC26EA3919D8C5CE00678927 /* VONetworkAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = FC26EA3719D8C5CE00678927 /* VONetworkAdapter.m */; };
+		FC26EA3C19D8CADB00678927 /* VONewsFeed.m in Sources */ = {isa = PBXBuildFile; fileRef = FC26EA3B19D8CADB00678927 /* VONewsFeed.m */; };
+		FC26EA3D19D8CADB00678927 /* VONewsFeed.m in Sources */ = {isa = PBXBuildFile; fileRef = FC26EA3B19D8CADB00678927 /* VONewsFeed.m */; };
+		FC659A0F19D5CD23009EFBBC /* VOLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC659A0E19D5CD23009EFBBC /* VOLoginViewController.xib */; };
+		FC81630E19D7CF9E00F33DF0 /* VOPost.m in Sources */ = {isa = PBXBuildFile; fileRef = FC81630D19D7CF9E00F33DF0 /* VOPost.m */; };
+		FC81631219D7D05700F33DF0 /* VOContent.m in Sources */ = {isa = PBXBuildFile; fileRef = FC81631119D7D05700F33DF0 /* VOContent.m */; };
+		FC9B91D419D52B5400D99541 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FC9B91D319D52B5400D99541 /* main.m */; };
+		FC9B91D719D52B5400D99541 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FC9B91D619D52B5400D99541 /* AppDelegate.m */; };
+		FC9B91DF19D52B5400D99541 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FC9B91DE19D52B5400D99541 /* Images.xcassets */; };
+		FC9B91E219D52B5400D99541 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC9B91E019D52B5400D99541 /* LaunchScreen.xib */; };
+		FC9B91EE19D52B5400D99541 /* VandyOverheardTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FC9B91ED19D52B5400D99541 /* VandyOverheardTests.m */; };
+		FC9B952E19D537A300D99541 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC9B952D19D537A300D99541 /* FacebookSDK.framework */; };
+		FC9B952F19D537A300D99541 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC9B952D19D537A300D99541 /* FacebookSDK.framework */; };
+		FC9B953E19D5A8A900D99541 /* VODesignFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = FC9B953D19D5A8A900D99541 /* VODesignFactory.m */; };
+		FC9B953F19D5A8A900D99541 /* VODesignFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = FC9B953D19D5A8A900D99541 /* VODesignFactory.m */; };
+		FC9B954219D5A8E900D99541 /* VOLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC9B954119D5A8E900D99541 /* VOLoginViewController.m */; };
+		FC9B954319D5A8E900D99541 /* VOLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC9B954119D5A8E900D99541 /* VOLoginViewController.m */; };
+		FC9B954619D5ABDB00D99541 /* VOLoginFlowController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC9B954519D5ABDB00D99541 /* VOLoginFlowController.m */; };
+		FC9B954719D5ABDB00D99541 /* VOLoginFlowController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC9B954519D5ABDB00D99541 /* VOLoginFlowController.m */; };
+		FC9B954B19D5AD5400D99541 /* VOUser.m in Sources */ = {isa = PBXBuildFile; fileRef = FC9B954A19D5AD5400D99541 /* VOUser.m */; };
+		FC9B954C19D5AD5400D99541 /* VOUser.m in Sources */ = {isa = PBXBuildFile; fileRef = FC9B954A19D5AD5400D99541 /* VOUser.m */; };
+		FCA1051D19D7C08400072D79 /* VONewsFeedController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCA1051C19D7C08400072D79 /* VONewsFeedController.m */; };
+		FCBE2F2B19D9C454008D3AFC /* VONetworkConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = FCBE2F2A19D9C454008D3AFC /* VONetworkConstants.m */; };
+		FCD68FEB19DB548900261DDF /* VONewsFeedPostCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FCD68FEA19DB548900261DDF /* VONewsFeedPostCell.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		FC9B91E819D52B5400D99541 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FC9B91C619D52B5400D99541 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FC9B91CD19D52B5400D99541;
+			remoteInfo = VandyOverheard;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		FC17673C19DB3650007085D3 /* VONewsFeedPostCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VONewsFeedPostCell.h; sourceTree = "<group>"; };
+		FC17673D19DB3650007085D3 /* VONewsFeedPostCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VONewsFeedPostCell.m; sourceTree = "<group>"; };
+		FC26EA3619D8C5CE00678927 /* VONetworkAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VONetworkAdapter.h; path = VandyOverheard/VONetworkAdapter.h; sourceTree = "<group>"; };
+		FC26EA3719D8C5CE00678927 /* VONetworkAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VONetworkAdapter.m; path = VandyOverheard/VONetworkAdapter.m; sourceTree = "<group>"; };
+		FC26EA3A19D8CADB00678927 /* VONewsFeed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VONewsFeed.h; sourceTree = "<group>"; };
+		FC26EA3B19D8CADB00678927 /* VONewsFeed.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VONewsFeed.m; sourceTree = "<group>"; };
+		FC26EA3E19D8CAF800678927 /* VONewsFeedDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VONewsFeedDelegate.h; sourceTree = "<group>"; };
+		FC659A0E19D5CD23009EFBBC /* VOLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VOLoginViewController.xib; sourceTree = "<group>"; };
+		FC81630C19D7CF9E00F33DF0 /* VOPost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VOPost.h; sourceTree = "<group>"; };
+		FC81630D19D7CF9E00F33DF0 /* VOPost.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VOPost.m; sourceTree = "<group>"; };
+		FC81631019D7D05700F33DF0 /* VOContent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VOContent.h; sourceTree = "<group>"; };
+		FC81631119D7D05700F33DF0 /* VOContent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VOContent.m; sourceTree = "<group>"; };
+		FC9B91CE19D52B5400D99541 /* VandyOverheard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VandyOverheard.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FC9B91D219D52B5400D99541 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FC9B91D319D52B5400D99541 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		FC9B91D519D52B5400D99541 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		FC9B91D619D52B5400D99541 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		FC9B91DE19D52B5400D99541 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		FC9B91E119D52B5400D99541 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		FC9B91E719D52B5400D99541 /* VandyOverheardTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VandyOverheardTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FC9B91EC19D52B5400D99541 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FC9B91ED19D52B5400D99541 /* VandyOverheardTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VandyOverheardTests.m; sourceTree = "<group>"; };
+		FC9B952D19D537A300D99541 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
+		FC9B953C19D5A8A900D99541 /* VODesignFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VODesignFactory.h; sourceTree = "<group>"; };
+		FC9B953D19D5A8A900D99541 /* VODesignFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VODesignFactory.m; sourceTree = "<group>"; };
+		FC9B954019D5A8E900D99541 /* VOLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VOLoginViewController.h; sourceTree = "<group>"; };
+		FC9B954119D5A8E900D99541 /* VOLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VOLoginViewController.m; sourceTree = "<group>"; };
+		FC9B954419D5ABDB00D99541 /* VOLoginFlowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VOLoginFlowController.h; sourceTree = "<group>"; };
+		FC9B954519D5ABDB00D99541 /* VOLoginFlowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VOLoginFlowController.m; sourceTree = "<group>"; };
+		FC9B954819D5AD2200D99541 /* VOLoginFlowDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VOLoginFlowDelegate.h; sourceTree = "<group>"; };
+		FC9B954919D5AD5400D99541 /* VOUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VOUser.h; sourceTree = "<group>"; };
+		FC9B954A19D5AD5400D99541 /* VOUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VOUser.m; sourceTree = "<group>"; };
+		FCA1051B19D7C08400072D79 /* VONewsFeedController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VONewsFeedController.h; sourceTree = "<group>"; };
+		FCA1051C19D7C08400072D79 /* VONewsFeedController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VONewsFeedController.m; sourceTree = "<group>"; };
+		FCBE2F2919D9C454008D3AFC /* VONetworkConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VONetworkConstants.h; path = VandyOverheard/VONetworkConstants.h; sourceTree = "<group>"; };
+		FCBE2F2A19D9C454008D3AFC /* VONetworkConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VONetworkConstants.m; path = VandyOverheard/VONetworkConstants.m; sourceTree = "<group>"; };
+		FCD68FEA19DB548900261DDF /* VONewsFeedPostCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VONewsFeedPostCell.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		FC9B91CB19D52B5400D99541 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FC9B952E19D537A300D99541 /* FacebookSDK.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FC9B91E419D52B5400D99541 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FC9B952F19D537A300D99541 /* FacebookSDK.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		FC26EA3519D8C59200678927 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				FCBE2F2919D9C454008D3AFC /* VONetworkConstants.h */,
+				FCBE2F2A19D9C454008D3AFC /* VONetworkConstants.m */,
+				FC26EA3619D8C5CE00678927 /* VONetworkAdapter.h */,
+				FC26EA3719D8C5CE00678927 /* VONetworkAdapter.m */,
+			);
+			name = API;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		FC81630F19D7D01400F33DF0 /* Content */ = {
+			isa = PBXGroup;
+			children = (
+				FC81631019D7D05700F33DF0 /* VOContent.h */,
+				FC81631119D7D05700F33DF0 /* VOContent.m */,
+				FC81630C19D7CF9E00F33DF0 /* VOPost.h */,
+				FC81630D19D7CF9E00F33DF0 /* VOPost.m */,
+				FC26EA3E19D8CAF800678927 /* VONewsFeedDelegate.h */,
+				FC26EA3A19D8CADB00678927 /* VONewsFeed.h */,
+				FC26EA3B19D8CADB00678927 /* VONewsFeed.m */,
+			);
+			name = Content;
+			sourceTree = "<group>";
+		};
+		FC9B91C519D52B5400D99541 = {
+			isa = PBXGroup;
+			children = (
+				FC9B952D19D537A300D99541 /* FacebookSDK.framework */,
+				FC9B91D019D52B5400D99541 /* VandyOverheard */,
+				FC9B91EA19D52B5400D99541 /* VandyOverheardTests */,
+				FC9B91CF19D52B5400D99541 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		FC9B91CF19D52B5400D99541 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FC9B91CE19D52B5400D99541 /* VandyOverheard.app */,
+				FC9B91E719D52B5400D99541 /* VandyOverheardTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FC9B91D019D52B5400D99541 /* VandyOverheard */ = {
+			isa = PBXGroup;
+			children = (
+				FC9B953C19D5A8A900D99541 /* VODesignFactory.h */,
+				FC9B953D19D5A8A900D99541 /* VODesignFactory.m */,
+				FC9B91D519D52B5400D99541 /* AppDelegate.h */,
+				FC9B91D619D52B5400D99541 /* AppDelegate.m */,
+				FC26EA3519D8C59200678927 /* API */,
+				FC9B954D19D5AD5C00D99541 /* Models */,
+				FC9B953019D5A7DE00D99541 /* Login */,
+				FCA1051A19D7C06200072D79 /* News Feed */,
+				FC9B91DE19D52B5400D99541 /* Images.xcassets */,
+				FC9B91E019D52B5400D99541 /* LaunchScreen.xib */,
+				FC9B91D119D52B5400D99541 /* Supporting Files */,
+			);
+			path = VandyOverheard;
+			sourceTree = "<group>";
+		};
+		FC9B91D119D52B5400D99541 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				FC9B91D219D52B5400D99541 /* Info.plist */,
+				FC9B91D319D52B5400D99541 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		FC9B91EA19D52B5400D99541 /* VandyOverheardTests */ = {
+			isa = PBXGroup;
+			children = (
+				FC9B91ED19D52B5400D99541 /* VandyOverheardTests.m */,
+				FC9B91EB19D52B5400D99541 /* Supporting Files */,
+			);
+			path = VandyOverheardTests;
+			sourceTree = "<group>";
+		};
+		FC9B91EB19D52B5400D99541 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				FC9B91EC19D52B5400D99541 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		FC9B953019D5A7DE00D99541 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				FC9B954819D5AD2200D99541 /* VOLoginFlowDelegate.h */,
+				FC9B954419D5ABDB00D99541 /* VOLoginFlowController.h */,
+				FC9B954519D5ABDB00D99541 /* VOLoginFlowController.m */,
+				FC9B954019D5A8E900D99541 /* VOLoginViewController.h */,
+				FC9B954119D5A8E900D99541 /* VOLoginViewController.m */,
+				FC659A0E19D5CD23009EFBBC /* VOLoginViewController.xib */,
+			);
+			name = Login;
+			sourceTree = "<group>";
+		};
+		FC9B954D19D5AD5C00D99541 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				FC81630F19D7D01400F33DF0 /* Content */,
+				FC9B954919D5AD5400D99541 /* VOUser.h */,
+				FC9B954A19D5AD5400D99541 /* VOUser.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		FCA1051A19D7C06200072D79 /* News Feed */ = {
+			isa = PBXGroup;
+			children = (
+				FCA1051B19D7C08400072D79 /* VONewsFeedController.h */,
+				FCA1051C19D7C08400072D79 /* VONewsFeedController.m */,
+				FC17673C19DB3650007085D3 /* VONewsFeedPostCell.h */,
+				FC17673D19DB3650007085D3 /* VONewsFeedPostCell.m */,
+				FCD68FEA19DB548900261DDF /* VONewsFeedPostCell.xib */,
+			);
+			name = "News Feed";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		FC9B91CD19D52B5400D99541 /* VandyOverheard */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FC9B91F119D52B5400D99541 /* Build configuration list for PBXNativeTarget "VandyOverheard" */;
+			buildPhases = (
+				FC9B91CA19D52B5400D99541 /* Sources */,
+				FC9B91CB19D52B5400D99541 /* Frameworks */,
+				FC9B91CC19D52B5400D99541 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = VandyOverheard;
+			productName = VandyOverheard;
+			productReference = FC9B91CE19D52B5400D99541 /* VandyOverheard.app */;
+			productType = "com.apple.product-type.application";
+		};
+		FC9B91E619D52B5400D99541 /* VandyOverheardTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FC9B91F419D52B5400D99541 /* Build configuration list for PBXNativeTarget "VandyOverheardTests" */;
+			buildPhases = (
+				FC9B91E319D52B5400D99541 /* Sources */,
+				FC9B91E419D52B5400D99541 /* Frameworks */,
+				FC9B91E519D52B5400D99541 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FC9B91E919D52B5400D99541 /* PBXTargetDependency */,
+			);
+			name = VandyOverheardTests;
+			productName = VandyOverheardTests;
+			productReference = FC9B91E719D52B5400D99541 /* VandyOverheardTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		FC9B91C619D52B5400D99541 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0600;
+				ORGANIZATIONNAME = "Brendan McNamara";
+				TargetAttributes = {
+					FC9B91CD19D52B5400D99541 = {
+						CreatedOnToolsVersion = 6.0.1;
+					};
+					FC9B91E619D52B5400D99541 = {
+						CreatedOnToolsVersion = 6.0.1;
+						TestTargetID = FC9B91CD19D52B5400D99541;
+					};
+				};
+			};
+			buildConfigurationList = FC9B91C919D52B5400D99541 /* Build configuration list for PBXProject "VandyOverheard" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+				he,
+			);
+			mainGroup = FC9B91C519D52B5400D99541;
+			productRefGroup = FC9B91CF19D52B5400D99541 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				FC9B91CD19D52B5400D99541 /* VandyOverheard */,
+				FC9B91E619D52B5400D99541 /* VandyOverheardTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		FC9B91CC19D52B5400D99541 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FC9B91E219D52B5400D99541 /* LaunchScreen.xib in Resources */,
+				FC659A0F19D5CD23009EFBBC /* VOLoginViewController.xib in Resources */,
+				FC9B91DF19D52B5400D99541 /* Images.xcassets in Resources */,
+				FCD68FEB19DB548900261DDF /* VONewsFeedPostCell.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FC9B91E519D52B5400D99541 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		FC9B91CA19D52B5400D99541 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FC9B91D719D52B5400D99541 /* AppDelegate.m in Sources */,
+				FC9B954B19D5AD5400D99541 /* VOUser.m in Sources */,
+				FC9B91D419D52B5400D99541 /* main.m in Sources */,
+				FC9B954619D5ABDB00D99541 /* VOLoginFlowController.m in Sources */,
+				FC9B953E19D5A8A900D99541 /* VODesignFactory.m in Sources */,
+				FC17673E19DB3650007085D3 /* VONewsFeedPostCell.m in Sources */,
+				FC81631219D7D05700F33DF0 /* VOContent.m in Sources */,
+				FCA1051D19D7C08400072D79 /* VONewsFeedController.m in Sources */,
+				FCBE2F2B19D9C454008D3AFC /* VONetworkConstants.m in Sources */,
+				FC26EA3819D8C5CE00678927 /* VONetworkAdapter.m in Sources */,
+				FC81630E19D7CF9E00F33DF0 /* VOPost.m in Sources */,
+				FC26EA3C19D8CADB00678927 /* VONewsFeed.m in Sources */,
+				FC9B954219D5A8E900D99541 /* VOLoginViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FC9B91E319D52B5400D99541 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FC9B954719D5ABDB00D99541 /* VOLoginFlowController.m in Sources */,
+				FC26EA3D19D8CADB00678927 /* VONewsFeed.m in Sources */,
+				FC9B91EE19D52B5400D99541 /* VandyOverheardTests.m in Sources */,
+				FC9B954319D5A8E900D99541 /* VOLoginViewController.m in Sources */,
+				FC26EA3919D8C5CE00678927 /* VONetworkAdapter.m in Sources */,
+				FC9B953F19D5A8A900D99541 /* VODesignFactory.m in Sources */,
+				FC9B954C19D5AD5400D99541 /* VOUser.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		FC9B91E919D52B5400D99541 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FC9B91CD19D52B5400D99541 /* VandyOverheard */;
+			targetProxy = FC9B91E819D52B5400D99541 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		FC9B91E019D52B5400D99541 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FC9B91E119D52B5400D99541 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		FC9B91EF19D52B5400D99541 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		FC9B91F019D52B5400D99541 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		FC9B91F219D52B5400D99541 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/mcnamara/Documents/FacebookSDK,
+					/Users/mcnamara/Documents/FacebookSDK/FBAudienceNetwork,
+				);
+				INFOPLIST_FILE = VandyOverheard/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/mcnamara/Documents/FacebookSDK/FacebookSDK.framework,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		FC9B91F319D52B5400D99541 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/mcnamara/Documents/FacebookSDK,
+					/Users/mcnamara/Documents/FacebookSDK/FBAudienceNetwork,
+				);
+				INFOPLIST_FILE = VandyOverheard/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/mcnamara/Documents/FacebookSDK/FacebookSDK.framework,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		FC9B91F519D52B5400D99541 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					/Users/mcnamara/Documents/FacebookSDK,
+					/Users/mcnamara/Documents/FacebookSDK/FBAudienceNetwork,
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = VandyOverheardTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/mcnamara/Documents/FacebookSDK/FacebookSDK.framework,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/VandyOverheard.app/VandyOverheard";
+			};
+			name = Debug;
+		};
+		FC9B91F619D52B5400D99541 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					/Users/mcnamara/Documents/FacebookSDK,
+					/Users/mcnamara/Documents/FacebookSDK/FBAudienceNetwork,
+				);
+				INFOPLIST_FILE = VandyOverheardTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/mcnamara/Documents/FacebookSDK/FacebookSDK.framework,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/VandyOverheard.app/VandyOverheard";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		FC9B91C919D52B5400D99541 /* Build configuration list for PBXProject "VandyOverheard" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FC9B91EF19D52B5400D99541 /* Debug */,
+				FC9B91F019D52B5400D99541 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FC9B91F119D52B5400D99541 /* Build configuration list for PBXNativeTarget "VandyOverheard" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FC9B91F219D52B5400D99541 /* Debug */,
+				FC9B91F319D52B5400D99541 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FC9B91F419D52B5400D99541 /* Build configuration list for PBXNativeTarget "VandyOverheardTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FC9B91F519D52B5400D99541 /* Debug */,
+				FC9B91F619D52B5400D99541 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = FC9B91C619D52B5400D99541 /* Project object */;
+}
