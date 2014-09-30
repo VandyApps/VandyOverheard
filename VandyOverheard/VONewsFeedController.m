@@ -61,9 +61,8 @@ static NSString *const PostCellId = @"PostCell";
     [self layoutTableView];
 
     
-    [self.tableView registerNib:[UINib nibWithNibName:@"VONewsFeedPostCell"
-                                              bundle:[NSBundle mainBundle]]
-        forCellReuseIdentifier:PostCellId];
+    [self.tableView registerClass:[VONewsFeedPostCell class]
+           forCellReuseIdentifier:PostCellId];
 }
 
 

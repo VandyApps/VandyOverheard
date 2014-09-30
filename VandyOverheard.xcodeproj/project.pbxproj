@@ -32,7 +32,6 @@
 		FC9B954C19D5AD5400D99541 /* VOUser.m in Sources */ = {isa = PBXBuildFile; fileRef = FC9B954A19D5AD5400D99541 /* VOUser.m */; };
 		FCA1051D19D7C08400072D79 /* VONewsFeedController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCA1051C19D7C08400072D79 /* VONewsFeedController.m */; };
 		FCBE2F2B19D9C454008D3AFC /* VONetworkConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = FCBE2F2A19D9C454008D3AFC /* VONetworkConstants.m */; };
-		FCD68FEB19DB548900261DDF /* VONewsFeedPostCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FCD68FEA19DB548900261DDF /* VONewsFeedPostCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,7 +81,6 @@
 		FCA1051C19D7C08400072D79 /* VONewsFeedController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VONewsFeedController.m; sourceTree = "<group>"; };
 		FCBE2F2919D9C454008D3AFC /* VONetworkConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VONetworkConstants.h; path = VandyOverheard/VONetworkConstants.h; sourceTree = "<group>"; };
 		FCBE2F2A19D9C454008D3AFC /* VONetworkConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VONetworkConstants.m; path = VandyOverheard/VONetworkConstants.m; sourceTree = "<group>"; };
-		FCD68FEA19DB548900261DDF /* VONewsFeedPostCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VONewsFeedPostCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -224,7 +222,6 @@
 				FCA1051C19D7C08400072D79 /* VONewsFeedController.m */,
 				FC17673C19DB3650007085D3 /* VONewsFeedPostCell.h */,
 				FC17673D19DB3650007085D3 /* VONewsFeedPostCell.m */,
-				FCD68FEA19DB548900261DDF /* VONewsFeedPostCell.xib */,
 			);
 			name = "News Feed";
 			sourceTree = "<group>";
@@ -313,7 +310,6 @@
 				FC9B91E219D52B5400D99541 /* LaunchScreen.xib in Resources */,
 				FC659A0F19D5CD23009EFBBC /* VOLoginViewController.xib in Resources */,
 				FC9B91DF19D52B5400D99541 /* Images.xcassets in Resources */,
-				FCD68FEB19DB548900261DDF /* VONewsFeedPostCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
