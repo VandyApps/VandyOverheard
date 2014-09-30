@@ -13,16 +13,6 @@
 @interface VONewsFeedPostCell : UITableViewCell
 
 /**
- * @return The height this cell should be for a given
- *  post.
- *
- * @discussion This method is meant as a convenience
- *  method to calculate the height of the table view
- *  cell.
- */
-+ (CGFloat)heightForCellWithPost:(VOPost *)post;
-
-/**
  * @abstract
  *  The post being displayed by the cell.
  */

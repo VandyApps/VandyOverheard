@@ -47,6 +47,8 @@ static NSString *const PostCellId = @"PostCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = @"Vandy Overheard";
+    
     self.view.backgroundColor = [UIColor whiteColor];
     self.newsFeed = [[VONewsFeed alloc] init];
     self.newsFeed.delegate = self;

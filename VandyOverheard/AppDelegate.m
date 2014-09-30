@@ -10,6 +10,7 @@
 
 #import <FacebookSDK/FacebookSDK.h>
 
+#import "VODesignFactory.h"
 #import "VOLoginFlowController.h"
 #import "VONewsFeedController.h"
 
@@ -32,13 +33,16 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
 
+    [[UINavigationBar appearance] setBarTintColor:[VODesignFactory navBarColor]];
+    
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     
     VOLoginFlowController *rootController = [[VOLoginFlowController alloc] init];
 
     VONewsFeedController *newsFeedController = [[VONewsFeedController alloc] init];
     rootController.delegate = self;
-    rootController.destinationController = newsFeedController;
+    rootController.destinationController =
+        [[UINavigationController alloc] initWithRootViewController: newsFeedController];
 
     self.window.rootViewController = rootController;
     
