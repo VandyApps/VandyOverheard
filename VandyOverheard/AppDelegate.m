@@ -33,7 +33,14 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
 
+    // TODO: Move all this appearance setup to a setup method
     [[UINavigationBar appearance] setBarTintColor:[VODesignFactory navBarColor]];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    NSDictionary *textAttributes = @{
+                                     NSForegroundColorAttributeName: [VODesignFactory navBarTextColor]
+                                     };
+    [[UINavigationBar appearance] setTitleTextAttributes:textAttributes];
+
     
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     

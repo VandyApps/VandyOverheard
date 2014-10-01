@@ -13,6 +13,10 @@
 
 + (UIColor *)mainAppColor;
 
++ (UIColor *)secondaryAppColor;
+
 + (UIColor *)navBarColor;
+
++ (UIColor *)navBarTextColor;
 
 @end
