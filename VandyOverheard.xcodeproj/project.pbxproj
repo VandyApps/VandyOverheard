@@ -129,6 +129,13 @@
 			name = Content;
 			sourceTree = "<group>";
 		};
+		FC97E48F19DB8038007F3B34 /* Stores */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Stores;
+			sourceTree = "<group>";
+		};
 		FC9B91C519D52B5400D99541 = {
 			isa = PBXGroup;
 			children = (
@@ -157,6 +164,7 @@
 				FC9B91D619D52B5400D99541 /* AppDelegate.m */,
 				FC26EA3519D8C59200678927 /* API */,
 				FC9B954D19D5AD5C00D99541 /* Models */,
+				FC97E48F19DB8038007F3B34 /* Stores */,
 				FC9B953019D5A7DE00D99541 /* Login */,
 				FCA1051A19D7C06200072D79 /* News Feed */,
 				FC9B91DE19D52B5400D99541 /* Images.xcassets */,
