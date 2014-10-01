@@ -11,6 +11,18 @@
 
 @interface VODesignFactory : NSObject
 
++ (UIFont *)headerFont;
+
++ (UIFont *)normalFont;
+
++ (UIFont *)asideFont;
+
++ (UIColor *)headerFontColor;
+
++ (UIColor *)normalFontColor;
+
++ (UIColor *)asideFontColor;
+
 + (UIColor *)mainAppColor;
 
 + (UIColor *)secondaryAppColor;
@@ -18,5 +30,7 @@
 + (UIColor *)navBarColor;
 
 + (UIColor *)navBarTextColor;
+
++ (UIColor *)profilePicBorderColor;
 
 @end
