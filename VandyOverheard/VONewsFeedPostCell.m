@@ -8,10 +8,8 @@
 
 #import "VONewsFeedPostCell.h"
 
-#import <FacebookSDK/FacebookSDK.h>
-
 #import "VOPost.h"
-#import "VOProfilePictureStore.h"
+#import "VOProfilePictureView.h"
 #import "VOUser.h"
 
 static CGFloat UserViewDimensions = 40.0;
@@ -32,7 +30,7 @@ static CGFloat UserViewPadding = 10.0;
  * @abstract
  *  The view displaying the user image.
  */
-@property (nonatomic, strong) FBProfilePictureView *userView;
+@property (nonatomic, strong) VOProfilePictureView *userView;
 
 /**
  * @abstract
@@ -75,6 +73,10 @@ static CGFloat UserViewPadding = 10.0;
         _contentLabel = [[UILabel alloc] init];
         [self addSubview:_contentLabel];
         [self layoutContentLabel];
+        _userView = [[VOProfilePictureView alloc] init];
+        _userView.layer.cornerRadius = UserViewDimensions / 2.f;
+        [self addSubview:_userView];
+        [self layoutUserView];
 
         _contentLabel.numberOfLines = 10;
     }
@@ -87,18 +89,7 @@ static CGFloat UserViewPadding = 10.0;
 - (void)setPost:(VOPost *)post {
     _post = post;
 
-    // Remove any profile picture views
-    // that might already exist on this
-    // cell.
-    if (_userView) {
-        [_userView removeFromSuperview];
-    }
-    
-    _userView = [[VOProfilePictureStore sharedInstance] profilePictureForUser:post.author];
-    _userView.layer.cornerRadius = UserViewDimensions / 2.f;
-    [self addSubview:_userView];
-    [self layoutUserView];
-    
+    _userView.user = _post.author;
     _contentLabel.text = _post.body;
 }
 

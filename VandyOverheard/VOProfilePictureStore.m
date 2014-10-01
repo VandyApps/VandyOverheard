@@ -37,11 +37,6 @@
 }
 
 
-+ (CGFloat)pictureDimensions {
-    return 3.0;
-}
-
-
 #pragma mark - Initializers
 
 - (instancetype)init {

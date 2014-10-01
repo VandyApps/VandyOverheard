@@ -21,13 +21,6 @@
 + (instancetype)sharedInstance;
 
 /**
- * @abstract
- *  The suggested width and height the profile
- *  picture should be set to.
- */
-+ (CGFloat)pictureDimensions;
-
-/**
  * @return The profile picture associated with the
  *  given user.
  */
