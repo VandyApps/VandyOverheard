@@ -11,6 +11,7 @@
 #import <FacebookSDK/FacebookSDK.h>
 
 #import "VOPost.h"
+#import "VOProfilePictureStore.h"
 #import "VOUser.h"
 
 static CGFloat UserViewDimensions = 40.0;
@@ -72,9 +73,7 @@ static CGFloat UserViewPadding = 10.0;
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         _contentLabel = [[UILabel alloc] init];
-        _userView = [[FBProfilePictureView alloc] init];
         [self addSubview:_contentLabel];
-        [self addSubview:_userView];
         [self layoutContentLabel];
 
         _contentLabel.numberOfLines = 10;
@@ -87,18 +86,20 @@ static CGFloat UserViewPadding = 10.0;
 
 - (void)setPost:(VOPost *)post {
     _post = post;
+
+    // Remove any profile picture views
+    // that might already exist on this
+    // cell.
     if (_userView) {
         [_userView removeFromSuperview];
     }
-    _userView = [[FBProfilePictureView alloc] initWithProfileID:_post.author.facebookId
-                                                pictureCropping:FBProfilePictureCroppingSquare];
+    
+    _userView = [[VOProfilePictureStore sharedInstance] profilePictureForUser:post.author];
     _userView.layer.cornerRadius = UserViewDimensions / 2.f;
     [self addSubview:_userView];
     [self layoutUserView];
     
-    if (_contentLabel) {
-        _contentLabel.text = _post.body;
-    }
+    _contentLabel.text = _post.body;
 }
 
 
@@ -159,7 +160,7 @@ static CGFloat UserViewPadding = 10.0;
                                 @"left": @(10 + UserViewDimensions + UserViewPadding),
                                 @"right": @20
                               };
-    static NSString *const verticalVFL = @"V:|-top-[_contentLabel]-bottom@800-|";
+    static NSString *const verticalVFL = @"V:|-top-[_contentLabel]->=bottom-|";
     
     NSArray *verticalConstraints =
         [NSLayoutConstraint constraintsWithVisualFormat:verticalVFL

@@ -15,6 +15,7 @@
 		FC659A0F19D5CD23009EFBBC /* VOLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC659A0E19D5CD23009EFBBC /* VOLoginViewController.xib */; };
 		FC81630E19D7CF9E00F33DF0 /* VOPost.m in Sources */ = {isa = PBXBuildFile; fileRef = FC81630D19D7CF9E00F33DF0 /* VOPost.m */; };
 		FC81631219D7D05700F33DF0 /* VOContent.m in Sources */ = {isa = PBXBuildFile; fileRef = FC81631119D7D05700F33DF0 /* VOContent.m */; };
+		FC86AB7519DB9CCA00270842 /* VOProfilePictureStore.m in Sources */ = {isa = PBXBuildFile; fileRef = FC86AB7419DB9CCA00270842 /* VOProfilePictureStore.m */; };
 		FC9B91D419D52B5400D99541 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FC9B91D319D52B5400D99541 /* main.m */; };
 		FC9B91D719D52B5400D99541 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FC9B91D619D52B5400D99541 /* AppDelegate.m */; };
 		FC9B91DF19D52B5400D99541 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FC9B91DE19D52B5400D99541 /* Images.xcassets */; };
@@ -57,6 +58,8 @@
 		FC81630D19D7CF9E00F33DF0 /* VOPost.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VOPost.m; sourceTree = "<group>"; };
 		FC81631019D7D05700F33DF0 /* VOContent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VOContent.h; sourceTree = "<group>"; };
 		FC81631119D7D05700F33DF0 /* VOContent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VOContent.m; sourceTree = "<group>"; };
+		FC86AB7319DB9CCA00270842 /* VOProfilePictureStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VOProfilePictureStore.h; sourceTree = "<group>"; };
+		FC86AB7419DB9CCA00270842 /* VOProfilePictureStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VOProfilePictureStore.m; sourceTree = "<group>"; };
 		FC9B91CE19D52B5400D99541 /* VandyOverheard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VandyOverheard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC9B91D219D52B5400D99541 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FC9B91D319D52B5400D99541 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -132,6 +135,8 @@
 		FC97E48F19DB8038007F3B34 /* Stores */ = {
 			isa = PBXGroup;
 			children = (
+				FC86AB7319DB9CCA00270842 /* VOProfilePictureStore.h */,
+				FC86AB7419DB9CCA00270842 /* VOProfilePictureStore.m */,
 			);
 			name = Stores;
 			sourceTree = "<group>";
@@ -344,6 +349,7 @@
 				FC81631219D7D05700F33DF0 /* VOContent.m in Sources */,
 				FCA1051D19D7C08400072D79 /* VONewsFeedController.m in Sources */,
 				FCBE2F2B19D9C454008D3AFC /* VONetworkConstants.m in Sources */,
+				FC86AB7519DB9CCA00270842 /* VOProfilePictureStore.m in Sources */,
 				FC26EA3819D8C5CE00678927 /* VONetworkAdapter.m in Sources */,
 				FC81630E19D7CF9E00F33DF0 /* VOPost.m in Sources */,
 				FC26EA3C19D8CADB00678927 /* VONewsFeed.m in Sources */,
