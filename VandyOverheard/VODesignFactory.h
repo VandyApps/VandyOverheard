@@ -11,11 +11,15 @@
 
 @interface VODesignFactory : NSObject
 
+// Fonts
+
 + (UIFont *)headerFont;
 
 + (UIFont *)normalFont;
 
 + (UIFont *)asideFont;
+
+// Colors
 
 + (UIColor *)headerFontColor;
 
@@ -32,5 +36,11 @@
 + (UIColor *)navBarTextColor;
 
 + (UIColor *)profilePicBorderColor;
+
+// Images
+
++ (UIImage *)likeSelectedImage;
+
++ (UIImage *)likeUnselectedImage;
 
 @end

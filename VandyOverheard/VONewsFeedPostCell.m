@@ -45,6 +45,12 @@ static CGFloat UserViewPadding = 15.0;
 
 /**
  * @abstract
+ *  The like button for the post.
+ */
+@property (nonatomic, strong) UIButton *likeButton;
+
+/**
+ * @abstract
  *  Add the layout constraints to the
  *  author label.
  *
@@ -53,6 +59,19 @@ static CGFloat UserViewPadding = 15.0;
  *  is initialized and added to the view hierarhchy.
  */
 - (void)layoutAuthorLabel;
+
+/**
+ * @abstract
+ *  Add the layout constraints for the
+ *  like button.
+ *
+ * @discussion
+ *  This method assumes that the like
+ *  button is initialized and added
+ *  to the view hierarchy. The like button
+ *  must be a sibling to the user view.
+ */
+- (void)layoutLikeButton;
 
 /**
  * @abstract
@@ -107,6 +126,10 @@ static CGFloat UserViewPadding = 15.0;
         _contentLabel.font = [VODesignFactory normalFont];
         _contentLabel.textColor = [VODesignFactory normalFontColor];
         
+        _likeButton = [[UIButton alloc] init];
+        [_likeButton setImage:[VODesignFactory likeUnselectedImage] forState:UIControlStateNormal];
+        [_likeButton setImage:[VODesignFactory likeSelectedImage] forState:UIControlStateSelected];
+        
         _userView = [[VOProfilePictureView alloc] init];
         _userView.layer.cornerRadius = UserViewDimensions / 2.f;
         _userView.layer.borderColor = [VODesignFactory profilePicBorderColor].CGColor;
@@ -114,13 +137,16 @@ static CGFloat UserViewPadding = 15.0;
 
         [self addSubview:_authorLabel];
         [self layoutAuthorLabel];
+ 
+        [self addSubview:_userView];
+        [self layoutUserView];
+        
+        [self addSubview:_likeButton];
+        [self layoutLikeButton];
         
         [self addSubview:_contentLabel];
         [self layoutContentLabel];
         
-        [self addSubview:_userView];
-        [self layoutUserView];
-
         _contentLabel.numberOfLines = 10;
     }
     return self;
@@ -143,6 +169,59 @@ static CGFloat UserViewPadding = 15.0;
 
 
 #pragma mark - Layout
+
+- (void)layoutLikeButton {
+    // TODO: Asbtract out these checks
+    NSAssert(self.likeButton != nil,
+             @"LikeButton must be initialized before calling layoutLikeButton.");
+    NSAssert(self.likeButton.superview != nil,
+             @"LikeButton must be added to the view hierarchy before calling layoutLikeButton.");
+    NSAssert(self.userView != nil, @"UserView must be initialized before calling layoutLikeButton");
+    
+    // TODO: Add macro for checking if views are siblings
+    NSAssert(self.userView.superview == self.likeButton.superview,
+            @"LikeButton and UserView must be siblings when calling layoutLikeButton");
+    
+    UIView *superview = self.likeButton.superview;
+    
+    NSDictionary *views = NSDictionaryOfVariableBindings(_likeButton, _userView);
+    
+    NSDictionary *metrics = @{
+                                @"top": @7,
+                                @"bottom": @10,
+                                @"height": @17
+                              };
+    
+    static NSString *const vertVFL = @"V:[_userView]-top-[_likeButton(height)]->=bottom-|";
+    
+    NSArray *verticalConstraints =
+        [NSLayoutConstraint constraintsWithVisualFormat:vertVFL
+                                                options:0
+                                                metrics:metrics
+                                                  views:views];
+    
+    NSLayoutConstraint *horizontalCenterConstraint =
+        [NSLayoutConstraint constraintWithItem:self.likeButton
+                                     attribute:NSLayoutAttributeCenterX
+                                     relatedBy:NSLayoutRelationEqual
+                                        toItem:self.userView
+                                     attribute:NSLayoutAttributeCenterX
+                                    multiplier:1.0 constant:0];
+    
+    NSLayoutConstraint *aspectRatioConstraint =
+        [NSLayoutConstraint constraintWithItem:self.likeButton
+                                     attribute:NSLayoutAttributeWidth
+                                     relatedBy:NSLayoutRelationEqual
+                                        toItem:self.likeButton
+                                     attribute:NSLayoutAttributeHeight
+                                    multiplier:1 constant:0];
+    
+    self.likeButton.translatesAutoresizingMaskIntoConstraints = NO;
+    [superview addConstraints:verticalConstraints];
+    [superview addConstraint:aspectRatioConstraint];
+    [superview addConstraint:horizontalCenterConstraint];
+}
+
 
 - (void)layoutAuthorLabel {
     // TODO: Abstract out these checks into
@@ -239,6 +318,9 @@ static CGFloat UserViewPadding = 15.0;
              @"AuthorLabel must be initialized before calling layoutContentLabel.");
     NSAssert(self.authorLabel.superview != nil,
              @"AuthorLabel must be in the view hierarchy before calling layoutContentLabel");
+    
+    
+    // TODO: Modify constraints to account for user view.
     
     UIView *superview = self.contentLabel.superview;
     

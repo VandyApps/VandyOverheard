@@ -69,4 +69,16 @@
     return [self mainAppColor];
 }
 
+#pragma mark - Images
+
++ (UIImage *)likeSelectedImage {
+    return [UIImage imageNamed:@"like-selected.png"];
+}
+
+
++ (UIImage *)likeUnselectedImage {
+    return [UIImage imageNamed:@"like-unselected.png"];
+}
+
+
 @end
