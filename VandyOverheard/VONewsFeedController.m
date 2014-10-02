@@ -65,6 +65,8 @@ static NSString *const PostCellId = @"PostCell";
     
     [self.tableView registerClass:[VONewsFeedPostCell class]
            forCellReuseIdentifier:PostCellId];
+    
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 
 

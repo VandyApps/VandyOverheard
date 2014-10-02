@@ -37,6 +37,8 @@
 
 + (UIColor *)profilePicBorderColor;
 
++ (UIColor *)postFooterColor;
+
 // Images
 
 + (UIImage *)likeSelectedImage;

@@ -53,6 +53,11 @@
     return [UIColor whiteColor];
 }
 
++ (UIColor *)postFooterColor {
+    return [UIColor colorWithRed:.95 green:.95 blue:.95 alpha:1];
+}
+
+
 #pragma mark Font Colors
 
 + (UIColor *)headerFontColor {

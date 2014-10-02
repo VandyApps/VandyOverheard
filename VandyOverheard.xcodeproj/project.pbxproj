@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		FC17673E19DB3650007085D3 /* VONewsFeedPostCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FC17673D19DB3650007085D3 /* VONewsFeedPostCell.m */; };
+		FC21317D19DD0C81002E624E /* VONewsFeedPostFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = FC21317C19DD0C81002E624E /* VONewsFeedPostFooter.m */; };
 		FC26EA3819D8C5CE00678927 /* VONetworkAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = FC26EA3719D8C5CE00678927 /* VONetworkAdapter.m */; };
 		FC26EA3919D8C5CE00678927 /* VONetworkAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = FC26EA3719D8C5CE00678927 /* VONetworkAdapter.m */; };
 		FC26EA3C19D8CADB00678927 /* VONewsFeed.m in Sources */ = {isa = PBXBuildFile; fileRef = FC26EA3B19D8CADB00678927 /* VONewsFeed.m */; };
@@ -49,6 +50,8 @@
 /* Begin PBXFileReference section */
 		FC17673C19DB3650007085D3 /* VONewsFeedPostCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VONewsFeedPostCell.h; sourceTree = "<group>"; };
 		FC17673D19DB3650007085D3 /* VONewsFeedPostCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VONewsFeedPostCell.m; sourceTree = "<group>"; };
+		FC21317B19DD0C81002E624E /* VONewsFeedPostFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VONewsFeedPostFooter.h; sourceTree = "<group>"; };
+		FC21317C19DD0C81002E624E /* VONewsFeedPostFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VONewsFeedPostFooter.m; sourceTree = "<group>"; };
 		FC26EA3619D8C5CE00678927 /* VONetworkAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VONetworkAdapter.h; path = VandyOverheard/VONetworkAdapter.h; sourceTree = "<group>"; };
 		FC26EA3719D8C5CE00678927 /* VONetworkAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VONetworkAdapter.m; path = VandyOverheard/VONetworkAdapter.m; sourceTree = "<group>"; };
 		FC26EA3A19D8CADB00678927 /* VONewsFeed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VONewsFeed.h; sourceTree = "<group>"; };
@@ -249,6 +252,8 @@
 				FCA1051C19D7C08400072D79 /* VONewsFeedController.m */,
 				FC17673C19DB3650007085D3 /* VONewsFeedPostCell.h */,
 				FC17673D19DB3650007085D3 /* VONewsFeedPostCell.m */,
+				FC21317B19DD0C81002E624E /* VONewsFeedPostFooter.h */,
+				FC21317C19DD0C81002E624E /* VONewsFeedPostFooter.m */,
 			);
 			name = "News Feed";
 			sourceTree = "<group>";
@@ -355,6 +360,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FC9B91D719D52B5400D99541 /* AppDelegate.m in Sources */,
+				FC21317D19DD0C81002E624E /* VONewsFeedPostFooter.m in Sources */,
 				FC9B954B19D5AD5400D99541 /* VOUser.m in Sources */,
 				FC9B91D419D52B5400D99541 /* main.m in Sources */,
 				FC9B954619D5ABDB00D99541 /* VOLoginFlowController.m in Sources */,

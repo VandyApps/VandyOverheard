@@ -9,6 +9,7 @@
 #import "VONewsFeedPostCell.h"
 
 #import "VODesignFactory.h"
+#import "VONewsFeedPostFooter.h"
 #import "VOPost.h"
 #import "VOProfilePictureView.h"
 #import "VOUser.h"
@@ -48,6 +49,12 @@ static CGFloat UserViewPadding = 15.0;
  *  The like button for the post.
  */
 @property (nonatomic, strong) UIButton *likeButton;
+
+/**
+ * @abstract
+ *  The toolbar for the cell.
+ */
+@property (nonatomic, strong) VONewsFeedPostFooter *footer;
 
 /**
  * @abstract
@@ -104,6 +111,19 @@ static CGFloat UserViewPadding = 15.0;
  */
 - (void)layoutContentLabel;
 
+/**
+ * @abstract
+ *  Add the layout constraints for the footer.
+ *
+ * @discussion
+ *  This method assumes that the footer is
+ *  initialized and added to the view hierarchy.
+ *  This method also assumes that the contentLabel
+ *  and likeButton are added as siblings to this
+ *  footer.
+ */
+- (void)layoutFooter;
+
 @end
 
 @implementation VONewsFeedPostCell
@@ -135,6 +155,9 @@ static CGFloat UserViewPadding = 15.0;
         _userView.layer.borderColor = [VODesignFactory profilePicBorderColor].CGColor;
         _userView.layer.borderWidth = 2.0;
 
+        _footer = [[VONewsFeedPostFooter alloc] init];
+        
+        
         [self addSubview:_authorLabel];
         [self layoutAuthorLabel];
  
@@ -146,6 +169,9 @@ static CGFloat UserViewPadding = 15.0;
         
         [self addSubview:_contentLabel];
         [self layoutContentLabel];
+        
+        [self addSubview:_footer];
+        [self layoutFooter];
         
         _contentLabel.numberOfLines = 10;
     }
@@ -350,6 +376,55 @@ static CGFloat UserViewPadding = 15.0;
     
     self.contentLabel.translatesAutoresizingMaskIntoConstraints = NO;
     [superview addConstraints:verticalConstraints];
+    [superview addConstraints:horizontalConstraints];
+}
+
+
+- (void)layoutFooter {
+    // TODO: Abstract out these checks into some
+    // defined macros.
+    NSAssert(self.footer != nil,
+             @"Footer must be initialized before calling layoutFooter.");
+    NSAssert(self.footer.superview != nil,
+             @"Footeer must be in the view hierarchy before calling layoutFooter.");
+    NSAssert(self.contentLabel.superview == self.footer.superview,
+             @"ContentLabel must be a sibling of the footer view.");
+    
+    UIView *superview = self.footer.superview;
+    
+    NSDictionary *metrics = @{
+                                @"top": @15
+                              };
+    
+    NSDictionary *views = NSDictionaryOfVariableBindings(_footer, _contentLabel, _likeButton);
+    
+    
+    static NSString *const verticalVFL1 = @"V:[_contentLabel]->=top-[_footer]|";
+    static NSString *const verticalVFL2 = @"V:[_likeButton]->=top-[_footer]|";
+    
+    NSArray *verticalConstraints1 =
+        [NSLayoutConstraint constraintsWithVisualFormat:verticalVFL1
+                                                options:0
+                                                metrics:metrics
+                                                  views:views];
+
+    NSArray *verticalConstraints2 =
+    [NSLayoutConstraint constraintsWithVisualFormat:verticalVFL2
+                                            options:0
+                                            metrics:metrics
+                                              views:views];
+
+    
+    static NSString *const horizonalVFL = @"H:|[_footer]|";
+    
+    NSArray *horizontalConstraints =
+        [NSLayoutConstraint constraintsWithVisualFormat:horizonalVFL
+                                                options:0
+                                                metrics:metrics
+                                                  views:views];
+    
+    [superview addConstraints:verticalConstraints1];
+    [superview addConstraints:verticalConstraints2];
     [superview addConstraints:horizontalConstraints];
 }
 
