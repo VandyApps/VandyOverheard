@@ -8,6 +8,8 @@
 
 #import "VONewsFeedPostCell.h"
 
+#import "BMAutolayoutBuilder.h"
+
 #import "VODesignFactory.h"
 #import "VONewsFeedPostFooter.h"
 #import "VOPost.h"
