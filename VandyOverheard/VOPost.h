@@ -19,10 +19,9 @@
 
 /**
  * @abstract
- *  The replies to the post. This is an array of VOContent
- *  objects.
+ *  The number of replies to this post.
  */
-@property (nonatomic, copy, readonly) NSArray *replies;
+@property (nonatomic, assign, readonly) NSInteger replyCount;
 
 /**
  * @abstract

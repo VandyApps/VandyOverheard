@@ -8,6 +8,8 @@
 
 #import "VOPost.h"
 
+#import "VONetworkConstants.h"
+
 @implementation VOPost
 
 #pragma mark - Initialization
@@ -15,7 +17,10 @@
 - (instancetype)initWithJson:(NSDictionary *)json {
     self = [super initWithJson:json];
     if (self) {
-#warning Implement me!
+        if (json[NetworkConstantReplies]) {
+            _replyCount =
+                [json[NetworkConstantReplies][NetworkConstantSummary][NetworkConstantCount] integerValue];
+        }
     }
     return self;
 }

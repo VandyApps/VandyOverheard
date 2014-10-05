@@ -54,14 +54,14 @@
     
     NSString *replyText;
     
-    if ([post.replies count] == 0) {
+    if (post.replyCount == 0) {
         replyText = @"No Replies";
     }
-    else if ([post.replies count] == 1) {
+    else if (post.replyCount == 1) {
         replyText = @"1 Reply";
     }
     else {
-        replyText = [NSString stringWithFormat:@"lu Replies"];
+        replyText = [NSString stringWithFormat:@"%lu Replies", post.replyCount];
     }
 
     _footerLabel.text = [NSString stringWithFormat:@"%@ • %@", likeText, replyText];
