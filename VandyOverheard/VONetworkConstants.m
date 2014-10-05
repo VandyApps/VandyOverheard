@@ -10,6 +10,8 @@
 
 NSString *const NetworkConstantId = @"id";
 
+NSString *const NetworkConstantData = @"data";
+
 NSString *const NetworkConstantTo = @"to";
 
 NSString *const NetworkConstantFrom = @"from";
