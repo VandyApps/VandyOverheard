@@ -12,6 +12,13 @@
 
 #pragma mark - Fonts
 
++ (UIFont *)fontForKey:(VODesignKey)key {
+    switch (key) {
+        case VODesignKeyPostFooter:
+            return [UIFont fontWithName:@"Verdana" size:10];
+    }
+}
+
 + (UIFont *)headerFont {
     return [UIFont fontWithName:@"Helvetica" size:20];
 }
@@ -28,6 +35,14 @@
 
 
 #pragma mark - Colors
+
++ (UIColor *)colorForKey:(VODesignKey)key {
+    switch (key) {
+        case VODesignKeyPostFooter:
+            return [UIColor colorWithRed:.5 green:.5 blue:.5 alpha:1];
+    }
+}
+
 
 + (UIColor *)mainAppColor {
     return [UIColor colorWithRed:51/255.f green:87/255.f blue:130/255.f alpha:1];
@@ -59,6 +74,7 @@
 
 
 #pragma mark Font Colors
+
 
 + (UIColor *)headerFontColor {
     return [UIColor blackColor];

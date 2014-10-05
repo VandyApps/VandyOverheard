@@ -9,7 +9,15 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+typedef NS_ENUM(NSInteger, VODesignKey) {
+    VODesignKeyPostFooter
+};
+
 @interface VODesignFactory : NSObject
+
+// TODO: Migrate all methods to
+// use the fontKey and colorKey
+// options.
 
 // Fonts
 
@@ -18,6 +26,12 @@
 + (UIFont *)normalFont;
 
 + (UIFont *)asideFont;
+
+/**
+ * @abstract
+ *  Get the font for a given key.
+ */
++ (UIFont *)fontForKey:(VODesignKey)key;
 
 // Colors
 
@@ -37,7 +51,13 @@
 
 + (UIColor *)profilePicBorderColor;
 
+/**
+ * @abstract
+ *  Get the color for the given key.
+ */
 + (UIColor *)postFooterColor;
+
++ (UIColor *)colorForKey:(VODesignKey)key;
 
 // Images
 

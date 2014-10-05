@@ -190,6 +190,7 @@ static CGFloat UserViewPadding = 15.0;
     
     _userView.user = _post.author;
     _contentLabel.text = _post.body;
+    _footer.post = _post;
     
 }
 
