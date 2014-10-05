@@ -17,7 +17,10 @@ static NSString *const FacebookGroupId = @"2255709804";
 #pragma mark - API Calls
 
 - (void)loadMainThread:(NetworkResponseBlock)response {
-    NSString *const path = [NSString stringWithFormat:@"%@/feed", FacebookGroupId];
+    NSString *const path =
+        [NSString stringWithFormat:@"%@/feed?fields=likes.summary(true),"
+                                    "message,from,created_time,"
+                                    "comments.summary(true)", FacebookGroupId];
     
     void(^handler)(FBRequestConnection *, id, NSError *) =
         ^(FBRequestConnection *connection, id result, NSError *error) {

@@ -12,6 +12,10 @@ extern NSString *const NetworkConstantId;
 
 extern NSString *const NetworkConstantData;
 
+extern NSString *const NetworkConstantSummary;
+
+extern NSString *const NetworkConstantCount;
+
 extern NSString *const NetworkConstantTo;
 
 extern NSString *const NetworkConstantFrom;

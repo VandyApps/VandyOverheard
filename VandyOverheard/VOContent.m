@@ -30,11 +30,9 @@
         
         _body = json[NetworkConstantContent];
 
-        if (json[NetworkConstantLikeCount]) {
-            _likeCount = [json[NetworkConstantLikeCount] integerValue];
-        }
-        else if (json[NetworkConstantLikeList]) {
-            _likeCount = [json[NetworkConstantLikeList][NetworkConstantData] count];
+        if (json[NetworkConstantLikeList]) {
+            _likeCount =
+                [json[NetworkConstantLikeList][NetworkConstantSummary][NetworkConstantCount] integerValue];
         }
 
         id facebookDate = json[NetworkConstantCreationDate];
