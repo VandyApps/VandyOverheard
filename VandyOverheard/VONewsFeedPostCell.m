@@ -253,41 +253,11 @@ static CGFloat UserViewPadding = 15.0;
 
 
 - (void)layoutAuthorLabel {
-    // TODO: Abstract out these checks into
-    // some defined macros.
-    NSAssert(self.authorLabel != nil,
-             @"AuthorLabel must be initialized before calling layoutAuthorLabel.");
-    NSAssert(self.authorLabel.superview != nil,
-             @"AuthorLabel must be in the view hierarchy before calling layoutAuthorLabel");
-    
-    UIView *superview = self.authorLabel.superview;
-    
-    NSDictionary *views = NSDictionaryOfVariableBindings(_authorLabel);
-    
-    NSDictionary *metrics = @{
-                                @"top": @10,
-                                @"left": @10
-                              };
-    
-    static NSString *const vertVFL = @"V:|-top-[_authorLabel]";
-    
-    NSArray *verticalConstraints =
-        [NSLayoutConstraint constraintsWithVisualFormat:vertVFL
-                                                options:0
-                                                metrics:metrics
-                                                  views:views];
-    
-    static NSString *const horVFL = @"H:|-left-[_authorLabel]";
-    
-    NSArray *horizontalConstraints =
-        [NSLayoutConstraint constraintsWithVisualFormat:horVFL
-                                                options:0
-                                                metrics:metrics
-                                                  views:views];
+    NSArray *constraints = [BMAutolayoutBuilder constraintsForView:self.authorLabel
+                                                           atPoint:CGPointMake(10, 10)];
     
     self.authorLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    [superview addConstraints:verticalConstraints];
-    [superview addConstraints:horizontalConstraints];
+    [self.authorLabel.superview addConstraints:constraints];
 }
 
 
@@ -314,7 +284,7 @@ static CGFloat UserViewPadding = 15.0;
                                 @"dimension": @(UserViewDimensions),
                               };
     
-    static NSString *const vertVFL = @"V:[_authorLabel]-top-[_userView(dimension)]->=bottom-|";
+    static NSString *const vertVFL = @"V:[_authorLabel]-top-[_userView]->=bottom-|";
     
     NSArray *verticalConstraints =
         [NSLayoutConstraint constraintsWithVisualFormat:vertVFL
@@ -322,7 +292,7 @@ static CGFloat UserViewPadding = 15.0;
                                                 metrics:metrics
                                                   views:views];
     
-    static NSString *const horVFL = @"H:|-left-[_userView(dimension)]";
+    static NSString *const horVFL = @"H:|-left-[_userView]";
 
     NSArray *horizontalConstraints =
         [NSLayoutConstraint constraintsWithVisualFormat:horVFL
@@ -330,9 +300,13 @@ static CGFloat UserViewPadding = 15.0;
                                                 metrics:metrics
                                                   views:views];
     
+    NSArray *sizeConstraints = [BMAutolayoutBuilder constraintsForView:self.userView
+                                                              withSize:CGSizeMake(40, 40)];
+    
     self.userView.translatesAutoresizingMaskIntoConstraints = NO;
     [superview addConstraints:verticalConstraints];
     [superview addConstraints:horizontalConstraints];
+    [self.userView addConstraints:sizeConstraints];
 }
 
 

@@ -74,4 +74,57 @@
 }
 
 
++ (NSArray *)constraintsForView:(UIView *)view atPoint:(CGPoint)point {
+    
+    AssertConstraintReady(view);
+    
+    NSDictionary *metrics = @{
+                                @"top": @(point.y),
+                                @"left": @(point.x)
+                              };
+    
+    NSDictionary *views = NSDictionaryOfVariableBindings(view);
+    
+    NSArray *verticalConstraints =
+        [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-top-[view]"
+                                                options:0
+                                                metrics:metrics
+                                                  views:views];
+    
+    NSArray *horizontalConstraints =
+        [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-left-[view]"
+                                                options:0
+                                                metrics:metrics
+                                                  views:views];
+    
+    return [verticalConstraints arrayByAddingObjectsFromArray:horizontalConstraints];
+}
+
+
++ (NSArray *)constraintsForView:(UIView *)view withSize:(CGSize)size {
+    
+    AssertViewNotNil(view);
+    
+    NSLayoutConstraint *heightConstraint =
+        [NSLayoutConstraint constraintWithItem:view
+                                     attribute:NSLayoutAttributeHeight
+                                     relatedBy:NSLayoutRelationEqual
+                                        toItem:nil
+                                     attribute:0
+                                    multiplier:1
+                                      constant:size.height];
+    
+    NSLayoutConstraint *widthConstraint =
+        [NSLayoutConstraint constraintWithItem:view
+                                     attribute:NSLayoutAttributeWidth
+                                     relatedBy:NSLayoutRelationEqual
+                                        toItem:nil
+                                     attribute:0
+                                    multiplier:1
+                                      constant:size.width];
+    
+    return @[heightConstraint, widthConstraint];
+}
+
+
 @end

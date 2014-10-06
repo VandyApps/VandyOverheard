@@ -8,6 +8,7 @@
 
 #import "VOProfilePictureView.h"
 
+#import "BMAutolayoutBuilder.h"
 #import "VOProfilePictureStore.h"
 
 @interface VOProfilePictureView ()
@@ -58,35 +59,11 @@
 
 - (void)layoutProfilePicture {
     
-    NSAssert(self.profilePicture != nil,
-             @"profilPicture must be initialized in before calling layoutProfilePicture.");
+    NSArray *constraints = [BMAutolayoutBuilder constraintsForView:self.profilePicture
+                                                        withInsets:UIEdgeInsetsZero];
     
-    NSAssert(self.profilePicture.superview != nil,
-             @"profilePicture must have a subview before calling layoutProfilePicture.");
-    
-    UIView *superview = self.profilePicture.superview;
-    
-    NSDictionary *views = NSDictionaryOfVariableBindings(_profilePicture);
-    
-    static NSString *const verticalVFL = @"V:|[_profilePicture]|";
-
-    NSArray *verticalConstraints =
-        [NSLayoutConstraint constraintsWithVisualFormat:verticalVFL
-                                                options:0
-                                                metrics:nil
-                                                  views:views];
-    
-    static NSString *const horizontalVFL = @"H:|[_profilePicture]|";
-    
-    NSArray *horizontalConstraints =
-        [NSLayoutConstraint constraintsWithVisualFormat:horizontalVFL
-                                                options:0
-                                                metrics:nil
-                                                  views:views];
-
     self.profilePicture.translatesAutoresizingMaskIntoConstraints = NO;
-    [superview addConstraints:verticalConstraints];
-    [superview addConstraints:horizontalConstraints];
+    [self.profilePicture.superview addConstraints:constraints];
 }
 
 

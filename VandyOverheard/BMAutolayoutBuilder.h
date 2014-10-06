@@ -62,4 +62,23 @@
  */
 + (NSArray *)constraintsForCenterView:(UIView *)view;
 
+/**
+ * @abstract
+ *  Sets the top left corner of the view to be at the given point.
+ *
+ * @param view The view to set the constraints for. This view
+ *  must have a superview.
+ */
++ (NSArray *)constraintsForView:(UIView *)view atPoint:(CGPoint)point;
+
+/**
+ * @abstract
+ *  Sets the size of the view.
+ *
+ * @param view The view to set the size for.
+ *
+ * @param size The size to set the view to.
+ */
++ (NSArray *)constraintsForView:(UIView *)view withSize:(CGSize)size;
+
 @end
