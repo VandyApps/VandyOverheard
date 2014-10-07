@@ -49,6 +49,12 @@ static VOAppContext *instance;
     self = [super init];
     if (self) {
         _user = [factory createCurrentUser];
+        if (_user == nil) {
+            @throw [NSException exceptionWithName:@"user cannot be nil"
+                                           reason:@"VOAppContext cannot be reset with a user "
+                                                   "that is nil."
+                                         userInfo:nil];
+        }
     }
     return self;
 }

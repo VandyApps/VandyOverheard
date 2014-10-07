@@ -10,11 +10,13 @@
 
 #import <FacebookSDK/FacebookSDK.h>
 
+#import "VOAppContext.h"
+#import "VOAppContextFactory.h"
 #import "VODesignFactory.h"
 #import "VOLoginFlowController.h"
 #import "VONewsFeedController.h"
 
-@interface AppDelegate () <VOLoginFlowDelegate>
+@interface AppDelegate () <VOLoginFlowDelegate, VOAppContextFactory>
 
 #pragma mark - Private Properties
 
@@ -111,6 +113,16 @@
            didLoginWithUser:(VOUser *)user {
 
     self.currentUser = user;
+    // When the user is logged in, configure
+    // the AppContext.
+    [VOAppContext resetContextWithFactory:self];
+}
+
+
+#pragma mark - VOAppContextFactory Methods
+
+- (VOUser *)createCurrentUser {
+    return self.currentUser;
 }
 
 
