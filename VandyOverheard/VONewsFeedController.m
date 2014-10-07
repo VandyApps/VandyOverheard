@@ -8,6 +8,7 @@
 
 #import "VONewsFeedController.h"
 
+#import "BMAutolayoutBuilder.h"
 #import "VOAppContext.h"
 #import "VONewsFeed.h"
 #import "VONewsFeedPostCell.h"
@@ -118,28 +119,14 @@ static NSString *const PostCellId = @"PostCell";
 
 - (void)layoutTableView {
     NSAssert(self.tableView != nil, @"The tableView property cannot be nil.");
+    NSAssert(self.tableView.superview == self.view,
+             @"The superview of the table view is not correctly set.");
     
-    UIView *superview = self.tableView.superview;
-    NSDictionary *views = NSDictionaryOfVariableBindings(_tableView);
-
-    // TODO: Replace this with Autolayout builder call.
-    static NSString *const verticalVFL = @"V:|[_tableView]|";
-    NSArray *verticalConstraints =
-        [NSLayoutConstraint constraintsWithVisualFormat:verticalVFL
-                                                options:0
-                                                metrics:nil
-                                                  views:views];
-    
-    static NSString *const horizontalVFL = @"H:|[_tableView]|";
-    NSArray *horizontalConstraints =
-        [NSLayoutConstraint constraintsWithVisualFormat:horizontalVFL
-                                                options:0
-                                                metrics:nil
-                                                  views:views];
+    NSArray *constraints = [BMAutolayoutBuilder constraintsForView:self.tableView
+                                                        withInsets:UIEdgeInsetsZero];
     
     self.tableView.translatesAutoresizingMaskIntoConstraints = NO;
-    [superview addConstraints:verticalConstraints];
-    [superview addConstraints:horizontalConstraints];
+    [self.view addConstraints:constraints];
 }
 
 
