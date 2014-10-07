@@ -19,4 +19,16 @@
  */
 - (FBProfilePictureView *)profilePictureForUser:(VOUser *)user;
 
+/**
+ * @abstract
+ *  Begin downloading the profile picture for the given user.
+ *  This is an optimization for faster profile picture loading.
+ *
+ * @discussion This method should always be executed on the main
+ *  thread.  If the profile picture for the given user is already
+ *  downloaded, then this will refresh the profile picture with
+ *  a new download.
+ */
+- (void)downloadProfilePictureForUser:(VOUser *)user;
+
 @end

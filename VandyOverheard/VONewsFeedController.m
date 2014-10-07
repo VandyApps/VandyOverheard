@@ -8,8 +8,11 @@
 
 #import "VONewsFeedController.h"
 
+#import "VOAppContext.h"
 #import "VONewsFeed.h"
 #import "VONewsFeedPostCell.h"
+#import "VOPost.h"
+#import "VOProfilePictureStore.h"
 
 @interface VONewsFeedController () <UITableViewDataSource, UITableViewDelegate, VONewsFeedDelegate>
 
@@ -78,6 +81,15 @@ static NSString *const PostCellId = @"PostCell";
 #pragma mark - VONewsFeedDelegate
 
 - (void)newsFeedDidRefresh:(VONewsFeed *)newsFeed {
+    // TODO: Make it so that the downloads do not get
+    // overwritten when the news feed is refreshed.
+    for (VOPost *post in newsFeed.posts) {
+        NSAssert([post isKindOfClass:[VOPost class]],
+                 @"newsFeed should only contain items of type post.");
+        
+        [[VOAppContext sharedInstance].profilePictureStore downloadProfilePictureForUser:post.author];
+    }
+    
     [self.tableView reloadData];
 }
 
@@ -110,6 +122,7 @@ static NSString *const PostCellId = @"PostCell";
     UIView *superview = self.tableView.superview;
     NSDictionary *views = NSDictionaryOfVariableBindings(_tableView);
 
+    // TODO: Replace this with Autolayout builder call.
     static NSString *const verticalVFL = @"V:|[_tableView]|";
     NSArray *verticalConstraints =
         [NSLayoutConstraint constraintsWithVisualFormat:verticalVFL

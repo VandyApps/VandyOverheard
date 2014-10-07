@@ -61,4 +61,11 @@
 }
 
 
+- (void)downloadProfilePictureForUser:(VOUser *)user {
+    self.pictureHash[user.facebookId] =
+        [[FBProfilePictureView alloc] initWithProfileID:user.facebookId
+                                        pictureCropping:FBProfilePictureCroppingSquare];
+}
+
+
 @end

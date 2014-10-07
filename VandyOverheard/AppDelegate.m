@@ -126,6 +126,7 @@
     return self.currentUser;
 }
 
+
 - (VOProfilePictureStore *)createProfilePictureStore {
     return [[VOProfilePictureStore alloc] init];
 }
