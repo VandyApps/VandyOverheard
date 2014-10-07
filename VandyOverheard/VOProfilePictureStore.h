@@ -14,13 +14,6 @@
 @interface VOProfilePictureStore : NSObject
 
 /**
- * @abstract
- *  Get the singleton instance of the profile
- *  picture store.
- */
-+ (instancetype)sharedInstance;
-
-/**
  * @return The profile picture associated with the
  *  given user.
  */

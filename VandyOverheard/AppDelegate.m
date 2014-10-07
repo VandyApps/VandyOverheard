@@ -15,6 +15,7 @@
 #import "VODesignFactory.h"
 #import "VOLoginFlowController.h"
 #import "VONewsFeedController.h"
+#import "VOProfilePictureStore.h"
 
 @interface AppDelegate () <VOLoginFlowDelegate, VOAppContextFactory>
 
@@ -123,6 +124,10 @@
 
 - (VOUser *)createCurrentUser {
     return self.currentUser;
+}
+
+- (VOProfilePictureStore *)createProfilePictureStore {
+    return [[VOProfilePictureStore alloc] init];
 }
 
 

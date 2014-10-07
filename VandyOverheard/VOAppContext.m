@@ -55,6 +55,15 @@ static VOAppContext *instance;
                                                    "that is nil."
                                          userInfo:nil];
         }
+        
+        _profilePictureStore = [factory createProfilePictureStore];
+        if (_profilePictureStore == nil) {
+            @throw [NSException exceptionWithName:@"profilePictureStore cannot be nil"
+                                           reason:@"VOAppContext cannot be reset with a "
+                                                   "profilePictureStore that is nil."
+                                         userInfo:nil];
+        }
+        
     }
     return self;
 }

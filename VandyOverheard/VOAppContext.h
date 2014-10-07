@@ -29,6 +29,18 @@
 
 /**
  * @abstract
+ *  The profile picture store of the application.
+ */
+@property (nonatomic, strong, readonly) VOProfilePictureStore *profilePictureStore;
+
+/**
+ * @abstract
+ *  The profile picture store for the application.
+ */
+@property (nonatomic, strong, readonly) VOProfilePictureStore *store;
+
+/**
+ * @abstract
  *  The access point for the app context
  *  singleton used in this application.
  *

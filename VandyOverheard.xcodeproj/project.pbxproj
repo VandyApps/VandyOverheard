@@ -82,8 +82,8 @@
 		FC9B91EC19D52B5400D99541 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FC9B91ED19D52B5400D99541 /* VandyOverheardTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VandyOverheardTests.m; sourceTree = "<group>"; };
 		FC9B952D19D537A300D99541 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
-		FC9B953C19D5A8A900D99541 /* VODesignFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VODesignFactory.h; sourceTree = "<group>"; };
-		FC9B953D19D5A8A900D99541 /* VODesignFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VODesignFactory.m; sourceTree = "<group>"; };
+		FC9B953C19D5A8A900D99541 /* VODesignFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VODesignFactory.h; path = VandyOverheard/VODesignFactory.h; sourceTree = "<group>"; };
+		FC9B953D19D5A8A900D99541 /* VODesignFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VODesignFactory.m; path = VandyOverheard/VODesignFactory.m; sourceTree = "<group>"; };
 		FC9B954019D5A8E900D99541 /* VOLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VOLoginViewController.h; sourceTree = "<group>"; };
 		FC9B954119D5A8E900D99541 /* VOLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VOLoginViewController.m; sourceTree = "<group>"; };
 		FC9B954419D5ABDB00D99541 /* VOLoginFlowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VOLoginFlowController.h; sourceTree = "<group>"; };
@@ -159,6 +159,8 @@
 		FC86AB7619DBA2E400270842 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				FC9B953C19D5A8A900D99541 /* VODesignFactory.h */,
+				FC9B953D19D5A8A900D99541 /* VODesignFactory.m */,
 				FC86AB7719DBA31200270842 /* VOProfilePictureView.h */,
 				FC86AB7819DBA31200270842 /* VOProfilePictureView.m */,
 			);
@@ -197,12 +199,10 @@
 		FC9B91D019D52B5400D99541 /* VandyOverheard */ = {
 			isa = PBXGroup;
 			children = (
-				FC53118A19E4A336009AA70E /* App Context */,
-				FCB1015B19E200BA008E3508 /* Utils */,
-				FC9B953C19D5A8A900D99541 /* VODesignFactory.h */,
-				FC9B953D19D5A8A900D99541 /* VODesignFactory.m */,
 				FC9B91D519D52B5400D99541 /* AppDelegate.h */,
 				FC9B91D619D52B5400D99541 /* AppDelegate.m */,
+				FCB1015B19E200BA008E3508 /* Utils */,
+				FC53118A19E4A336009AA70E /* App Context */,
 				FC26EA3519D8C59200678927 /* API */,
 				FC9B954D19D5AD5C00D99541 /* Models */,
 				FC86AB7619DBA2E400270842 /* Views */,

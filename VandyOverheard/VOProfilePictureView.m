@@ -9,6 +9,7 @@
 #import "VOProfilePictureView.h"
 
 #import "BMAutolayoutBuilder.h"
+#import "VOAppContext.h"
 #import "VOProfilePictureStore.h"
 
 @interface VOProfilePictureView ()
@@ -50,7 +51,7 @@
 - (void)setUser:(VOUser *)user {
     _user = user;
     [_profilePicture removeFromSuperview];
-    _profilePicture = [[VOProfilePictureStore sharedInstance] profilePictureForUser:user];
+    _profilePicture = [[VOAppContext sharedInstance].profilePictureStore profilePictureForUser:user];
     [self addSubview:_profilePicture];
     [self layoutProfilePicture];
 }
