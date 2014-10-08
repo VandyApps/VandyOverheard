@@ -14,6 +14,18 @@ typedef void(^NetworkResponseBlock)(id result, NSError *error);
 
 /**
  * @abstract
+ *  Load the main thread from the network.
+ *
+ * @param offset The offset of the pages for pagination
+ *  purposes.
+ *
+ * @param limit The limit of the pages for pagination
+ *  purposes.
+ */
+// - (void)loadMainThreadWithOffset:(NSInteger)offset limit:(NSInteger)limit;
+
+/**
+ * @abstract
  *  Loads the main thread of the newsfeed. The results
  *  will be passed to the reponse block parameter.
  *  This method will be called asynchronously but

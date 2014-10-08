@@ -17,8 +17,10 @@ static NSString *const FacebookGroupId = @"2255709804";
 #pragma mark - API Calls
 
 - (void)loadMainThread:(NetworkResponseBlock)response {
+    // NOTE: I believe the likes field will return the current
+    // user if the current user liked the post.
     NSString *const path =
-        [NSString stringWithFormat:@"%@/feed?fields=likes.summary(true),"
+        [NSString stringWithFormat:@"%@/feed?fields=likes.limit(1).summary(true),"
                                     "message,from,created_time,"
                                     "comments.summary(true)", FacebookGroupId];
     

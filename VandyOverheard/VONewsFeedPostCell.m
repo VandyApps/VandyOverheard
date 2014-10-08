@@ -194,6 +194,13 @@ static CGFloat UserViewPadding = 15.0;
     _contentLabel.text = _post.body;
     _footer.post = _post;
     
+    if (post.isLiked) {
+        _likeButton.selected = YES;
+    }
+    else {
+        _likeButton.selected = NO;
+    }
+    
 }
 
 

@@ -17,6 +17,11 @@
 @interface VOContent : NSObject
 
 /**
+ * @abstract
+ */
+@property (nonatomic, copy, readonly) NSString *facebookId;
+
+/**
  * @abstract The author of the content.
  */
 @property (nonatomic, strong, readonly) VOUser *author;
@@ -38,16 +43,16 @@
 
 /**
  * @abstract
+ *  YES if the post is liked by the current user.
+ */
+@property (nonatomic, assign, readonly) BOOL isLiked;
+
+/**
+ * @abstract
  *  Designated initializer.
  *
  * @param json The json used to create the VOContent.
  */
 - (instancetype)initWithJson:(NSDictionary *)json;
-
-/**
- * @return YES if the content is liked by the
- *  given user, false otherwise.
- */
-- (BOOL)isLikedByUser:(VOUser *)user;
 
 @end

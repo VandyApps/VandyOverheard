@@ -14,6 +14,7 @@
 		FC26EA3C19D8CADB00678927 /* VONewsFeed.m in Sources */ = {isa = PBXBuildFile; fileRef = FC26EA3B19D8CADB00678927 /* VONewsFeed.m */; };
 		FC26EA3D19D8CADB00678927 /* VONewsFeed.m in Sources */ = {isa = PBXBuildFile; fileRef = FC26EA3B19D8CADB00678927 /* VONewsFeed.m */; };
 		FC53118819E49F5D009AA70E /* VOAppContext.m in Sources */ = {isa = PBXBuildFile; fileRef = FC53118719E49F5D009AA70E /* VOAppContext.m */; };
+		FC53119119E4C6BA009AA70E /* VOFeedStore.m in Sources */ = {isa = PBXBuildFile; fileRef = FC53119019E4C6BA009AA70E /* VOFeedStore.m */; };
 		FC659A0F19D5CD23009EFBBC /* VOLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC659A0E19D5CD23009EFBBC /* VOLoginViewController.xib */; };
 		FC81630E19D7CF9E00F33DF0 /* VOPost.m in Sources */ = {isa = PBXBuildFile; fileRef = FC81630D19D7CF9E00F33DF0 /* VOPost.m */; };
 		FC81631219D7D05700F33DF0 /* VOContent.m in Sources */ = {isa = PBXBuildFile; fileRef = FC81631119D7D05700F33DF0 /* VOContent.m */; };
@@ -62,6 +63,8 @@
 		FC53118619E49F5D009AA70E /* VOAppContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VOAppContext.h; sourceTree = "<group>"; };
 		FC53118719E49F5D009AA70E /* VOAppContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VOAppContext.m; sourceTree = "<group>"; };
 		FC53118919E49FEB009AA70E /* VOAppContextFactory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VOAppContextFactory.h; sourceTree = "<group>"; };
+		FC53118F19E4C6BA009AA70E /* VOFeedStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VOFeedStore.h; sourceTree = "<group>"; };
+		FC53119019E4C6BA009AA70E /* VOFeedStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VOFeedStore.m; sourceTree = "<group>"; };
 		FC659A0E19D5CD23009EFBBC /* VOLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VOLoginViewController.xib; sourceTree = "<group>"; };
 		FC81630C19D7CF9E00F33DF0 /* VOPost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VOPost.h; sourceTree = "<group>"; };
 		FC81630D19D7CF9E00F33DF0 /* VOPost.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VOPost.m; sourceTree = "<group>"; };
@@ -171,6 +174,8 @@
 		FC97E48F19DB8038007F3B34 /* Stores */ = {
 			isa = PBXGroup;
 			children = (
+				FC53118F19E4C6BA009AA70E /* VOFeedStore.h */,
+				FC53119019E4C6BA009AA70E /* VOFeedStore.m */,
 				FC86AB7319DB9CCA00270842 /* VOProfilePictureStore.h */,
 				FC86AB7419DB9CCA00270842 /* VOProfilePictureStore.m */,
 			);
@@ -404,6 +409,7 @@
 				FC86AB7519DB9CCA00270842 /* VOProfilePictureStore.m in Sources */,
 				FC26EA3819D8C5CE00678927 /* VONetworkAdapter.m in Sources */,
 				FC86AB7919DBA31200270842 /* VOProfilePictureView.m in Sources */,
+				FC53119119E4C6BA009AA70E /* VOFeedStore.m in Sources */,
 				FC81630E19D7CF9E00F33DF0 /* VOPost.m in Sources */,
 				FC26EA3C19D8CADB00678927 /* VONewsFeed.m in Sources */,
 				FC9B954219D5A8E900D99541 /* VOLoginViewController.m in Sources */,
