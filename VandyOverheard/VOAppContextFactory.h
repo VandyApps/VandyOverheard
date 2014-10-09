@@ -10,6 +10,7 @@
 #define VandyOverheard_VOAppContextFactory_h
 
 @class VOUser;
+@class VOFeedStore;
 @class VOProfilePictureStore;
 
 @protocol VOAppContextFactory <NSObject>
@@ -32,6 +33,15 @@
  * @discussion This should never return nil.
  */
 - (VOProfilePictureStore *)createProfilePictureStore;
+
+/**
+ * @abstract
+ *  Create an instance of a news feed
+ *  store.
+ *
+ * @discussion This should never return nil.
+ */
+- (VOFeedStore *)createFeedStore;
 
 @end
 

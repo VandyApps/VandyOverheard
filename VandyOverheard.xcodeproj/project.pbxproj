@@ -59,7 +59,6 @@
 		FC26EA3719D8C5CE00678927 /* VONetworkAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VONetworkAdapter.m; path = VandyOverheard/VONetworkAdapter.m; sourceTree = "<group>"; };
 		FC26EA3A19D8CADB00678927 /* VONewsFeed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VONewsFeed.h; sourceTree = "<group>"; };
 		FC26EA3B19D8CADB00678927 /* VONewsFeed.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VONewsFeed.m; sourceTree = "<group>"; };
-		FC26EA3E19D8CAF800678927 /* VONewsFeedDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VONewsFeedDelegate.h; sourceTree = "<group>"; };
 		FC53118619E49F5D009AA70E /* VOAppContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VOAppContext.h; sourceTree = "<group>"; };
 		FC53118719E49F5D009AA70E /* VOAppContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VOAppContext.m; sourceTree = "<group>"; };
 		FC53118919E49FEB009AA70E /* VOAppContextFactory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VOAppContextFactory.h; sourceTree = "<group>"; };
@@ -152,7 +151,6 @@
 				FC81631119D7D05700F33DF0 /* VOContent.m */,
 				FC81630C19D7CF9E00F33DF0 /* VOPost.h */,
 				FC81630D19D7CF9E00F33DF0 /* VOPost.m */,
-				FC26EA3E19D8CAF800678927 /* VONewsFeedDelegate.h */,
 				FC26EA3A19D8CADB00678927 /* VONewsFeed.h */,
 				FC26EA3B19D8CADB00678927 /* VONewsFeed.m */,
 			);

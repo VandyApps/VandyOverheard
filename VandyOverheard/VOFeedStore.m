@@ -8,9 +8,18 @@
 
 #import "VOFeedStore.h"
 
+#import "VONetworkAdapter.h"
+#import "VONewsFeed.h"
 #import "VOPost.h"
 
 @interface VOFeedStore ()
+
+/**
+ * @abstract
+ *  The network adapter that manages network
+ *  calls.
+ */
+@property (nonatomic, strong) VONetworkAdapter *network;
 
 /**
  * @abstract
@@ -21,6 +30,16 @@
 @end
 
 @implementation VOFeedStore
+
+#pragma mark - Initialization
+
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        _network = [[VONetworkAdapter alloc] init];
+    }
+    return self;
+}
 
 #pragma mark - Accessors
 
@@ -45,8 +64,17 @@
 }
 
 
-- (VOPost *)postAtIndex:(NSInteger)index {
-    return [self.posts objectAtIndex:index];
+#pragma mark - Fetch
+
+- (void)fetchNewsFeed:(NewsFeedBlock)block {
+    [self.network loadMainThread:^(id result, NSError *error) {
+        if (error) {
+#warning Handle error here!
+        }
+        else {
+            block([[VONewsFeed alloc] initWithJson:result]);
+        }
+    }];
 }
 
 

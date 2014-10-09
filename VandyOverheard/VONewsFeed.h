@@ -8,17 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "VONewsFeedDelegate.h"
-
 @interface VONewsFeed : NSObject
-
-/**
- * @abstract
- *  The delegate responsible for handling
- *  any asynchonous callbacks. This may be
- *  nil.
- */
-@property (nonatomic, weak) id<VONewsFeedDelegate> delegate;
 
 /**
  * @abstract
@@ -31,11 +21,10 @@
 
 /**
  * @abstract
- *  Refresh the news feed. This method will
- *  cause the news feed to be fetched asynchonously.
- *  Once the newsfeed has been fetched, the delegate
- *  will be notified.
+ *  Designated initializer.
+ *
+ * @param json The json for a set of posts.
  */
-- (void)refresh;
+- (instancetype)initWithJson:(id)json;
 
 @end

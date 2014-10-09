@@ -11,10 +11,9 @@
 #import <FacebookSDK/FacebookSDK.h>
 
 #import "VODesignFactory.h"
-#import "VONewsFeedDelegate.h"
 #import "VOUser.h"
 
-@interface VOLoginViewController () <FBLoginViewDelegate>
+@interface VOLoginViewController ()
 
 #pragma mark - Private Properties
 

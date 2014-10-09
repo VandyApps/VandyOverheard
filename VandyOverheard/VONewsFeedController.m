@@ -10,12 +10,13 @@
 
 #import "BMAutolayoutBuilder.h"
 #import "VOAppContext.h"
+#import "VOFeedStore.h"
 #import "VONewsFeed.h"
 #import "VONewsFeedPostCell.h"
 #import "VOPost.h"
 #import "VOProfilePictureStore.h"
 
-@interface VONewsFeedController () <UITableViewDataSource, UITableViewDelegate, VONewsFeedDelegate>
+@interface VONewsFeedController () <UITableViewDataSource, UITableViewDelegate>
 
 /**
  * @abstract
@@ -55,7 +56,6 @@ static NSString *const PostCellId = @"PostCell";
     
     self.view.backgroundColor = [UIColor whiteColor];
     self.newsFeed = [[VONewsFeed alloc] init];
-    self.newsFeed.delegate = self;
     // Do any additional setup after loading the view.
 
     // Setup the table view.
@@ -75,23 +75,11 @@ static NSString *const PostCellId = @"PostCell";
 
 
 - (void)viewWillAppear:(BOOL)animated {
-    [self.newsFeed refresh];
-}
-
-
-#pragma mark - VONewsFeedDelegate
-
-- (void)newsFeedDidRefresh:(VONewsFeed *)newsFeed {
-    // TODO: Make it so that the downloads do not get
-    // overwritten when the news feed is refreshed.
-    for (VOPost *post in newsFeed.posts) {
-        NSAssert([post isKindOfClass:[VOPost class]],
-                 @"newsFeed should only contain items of type post.");
-        
-        [[VOAppContext sharedInstance].profilePictureStore downloadProfilePictureForUser:post.author];
-    }
-    
-    [self.tableView reloadData];
+    [[VOAppContext sharedInstance].feedStore fetchNewsFeed:^(VONewsFeed *newsFeed) {
+        _newsFeed = newsFeed;
+        [[VOAppContext sharedInstance].profilePicStore downloadProfilePicturesForNewsFeed:newsFeed];
+        [self.tableView reloadData];
+    }];
 }
 
 

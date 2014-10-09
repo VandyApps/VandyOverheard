@@ -25,7 +25,9 @@
 #warning Does not account for users with middle names
         
         _facebookId = json[NetworkConstantId];
-        NSArray *name = [json[NetworkConstantFrom][NetworkConstantFullName] componentsSeparatedByString:@" "];
+        NSArray *name =
+            [json[NetworkConstantFrom][NetworkConstantFullName] componentsSeparatedByString:@" "];
+
         NSString *facebookId = json[NetworkConstantFrom][NetworkConstantId];
         _author = [[VOUser alloc] initWithFirstName:name[0]
                                            lastName:name[1]
@@ -72,5 +74,6 @@
 - (NSUInteger)hash {
     return [self.facebookId hash];
 }
+
 
 @end

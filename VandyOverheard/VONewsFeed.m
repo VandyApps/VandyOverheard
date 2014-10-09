@@ -9,24 +9,17 @@
 #import "VONewsFeed.h"
 
 #import "VONetworkAdapter.h"
+#import "VONetworkConstants.h"
 #import "VOPost.h"
 
 @interface VONewsFeed ()
-
-#pragma mark - Private Properties
-
-/**
- * @abstract
- *  The newtwork adapter used to make network requests.
- */
-@property (nonatomic, strong) VONetworkAdapter *networkAdapter;
 
 /**
  * @abstract
  *  Reset the posts for the newsfeed using the results that
  *  come back after parsing the results.
  */
-- (void)parseResult:(id)result;
+- (void)parse:(id)result;
 
 @end
 
@@ -34,36 +27,20 @@
 
 #pragma mark - Initialization
 
-- (instancetype)init {
+- (instancetype)initWithJson:(id)json {
     self = [super init];
     if (self) {
-        _networkAdapter = [[VONetworkAdapter alloc] init];
+        [self parse:json];
     }
     return self;
 }
 
 
-#pragma mark - Refresh
-
-- (void)refresh {
-    [self.networkAdapter loadMainThread:^(id result, NSError *error) {
-        if (error) {
-#warning Handle error here!
-        }
-        // Load the data here.
-        [self parseResult:result];
-        if (self.delegate) {
-            [self.delegate newsFeedDidRefresh:self];
-        }
-    }];
-}
-
-
 #pragma mark - Parse
 
-- (void)parseResult:(id)result {
+- (void)parse:(id)json {
     NSMutableArray *posts = [[NSMutableArray alloc] init];
-    for (id postJson in result[@"data"]) {
+    for (id postJson in json[NetworkConstantData]) {
         VOPost *post = [[VOPost alloc] initWithJson:postJson];
         [posts addObject:post];
     }

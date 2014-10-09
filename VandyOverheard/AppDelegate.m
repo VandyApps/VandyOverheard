@@ -13,6 +13,7 @@
 #import "VOAppContext.h"
 #import "VOAppContextFactory.h"
 #import "VODesignFactory.h"
+#import "VOFeedStore.h"
 #import "VOLoginFlowController.h"
 #import "VONewsFeedController.h"
 #import "VOProfilePictureStore.h"
@@ -129,6 +130,11 @@
 
 - (VOProfilePictureStore *)createProfilePictureStore {
     return [[VOProfilePictureStore alloc] init];
+}
+
+
+- (VOFeedStore *)createFeedStore {
+    return [[VOFeedStore alloc] init];
 }
 
 

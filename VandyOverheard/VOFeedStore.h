@@ -8,7 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
+@class VONewsFeed;
 @class VOPost;
+
+typedef void(^NewsFeedBlock)(VONewsFeed *newsFeed);
 
 /**
  * @abstract
@@ -24,16 +27,17 @@
 @property (nonatomic, assign, readonly) NSInteger count;
 
 /**
- * @return The post at the given index.
- */
-- (VOPost *)postAtIndex:(NSInteger)index;
-
-/**
  * @abstract
  *  Add the posts to the feed store.
  *  This will overwrite any posts that
  *  already exist in the store.
  */
 - (void)addPosts:(NSArray *)posts;
+
+/**
+ * @abstract
+ *  Fetch the news fee ansynchronously.
+ */
+- (void)fetchNewsFeed:(NewsFeedBlock)block;
 
 @end

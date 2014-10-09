@@ -49,21 +49,8 @@ static VOAppContext *instance;
     self = [super init];
     if (self) {
         _user = [factory createCurrentUser];
-        if (_user == nil) {
-            @throw [NSException exceptionWithName:@"user cannot be nil"
-                                           reason:@"VOAppContext cannot be reset with a user "
-                                                   "that is nil."
-                                         userInfo:nil];
-        }
-        
         _profilePictureStore = [factory createProfilePictureStore];
-        if (_profilePictureStore == nil) {
-            @throw [NSException exceptionWithName:@"profilePictureStore cannot be nil"
-                                           reason:@"VOAppContext cannot be reset with a "
-                                                   "profilePictureStore that is nil."
-                                         userInfo:nil];
-        }
-        
+        _feedStore = [factory createFeedStore];
     }
     return self;
 }

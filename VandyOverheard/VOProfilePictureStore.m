@@ -8,6 +8,8 @@
 
 #import "VOProfilePictureStore.h"
 
+#import "VONewsFeed.h"
+#import "VOPost.h"
 #import "VOUser.h"
 
 @interface VOProfilePictureStore ()
@@ -65,6 +67,13 @@
     self.pictureHash[user.facebookId] =
         [[FBProfilePictureView alloc] initWithProfileID:user.facebookId
                                         pictureCropping:FBProfilePictureCroppingSquare];
+}
+
+
+- (void)downloadProfilePicturesForNewsFeed:(VONewsFeed *)feed {
+    for (VOPost *post in feed.posts) {
+        [self downloadProfilePictureForUser:post.author];
+    }
 }
 
 
