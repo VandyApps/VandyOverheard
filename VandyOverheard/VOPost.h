@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 #import "VOContent.h"
 
@@ -29,5 +30,12 @@
  *  if this is nil.
  */
 @property (nonatomic, copy, readonly) NSArray *photos;
+
+/**
+ * @abstract
+ *  The picture for the post, if there is one. If this
+ *  post has no picture, this will be nil.
+ */
+@property (nonatomic, strong, readonly) UIImage *picture;
 
 @end

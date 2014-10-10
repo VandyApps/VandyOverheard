@@ -54,6 +54,13 @@ static CGFloat UserViewPadding = 15.0;
 
 /**
  * @abstract
+ *  A picture of the content, if this post has
+ *  a picture. Otherwise, nil.
+ */
+@property (nonatomic, strong) UIImageView *pictureView;
+
+/**
+ * @abstract
  *  The toolbar for the cell.
  */
 @property (nonatomic, strong) VONewsFeedPostFooter *footer;
@@ -115,6 +122,21 @@ static CGFloat UserViewPadding = 15.0;
 
 /**
  * @abstract
+ *  Add the layout constraints to the picture
+ *  view.
+ *
+ * @discussion
+ *  This method assumes that the pictureView
+ *  is initialized and added to the view hierarchy.
+ *  This method also assumes that the like button
+ *  contentLabel are both laid out in the view as
+ *  siblings of this view, both with their constraints
+ *  set.
+ */
+- (void)layoutPictureView;
+
+/**
+ * @abstract
  *  Add the layout constraints for the footer.
  *
  * @discussion
@@ -122,7 +144,9 @@ static CGFloat UserViewPadding = 15.0;
  *  initialized and added to the view hierarchy.
  *  This method also assumes that the contentLabel
  *  and likeButton are added as siblings to this
- *  footer.
+ *  footer. This method also assumes that the
+ *  pictureView is added as a sibling to this
+ *  view if there is an image for the post.
  */
 - (void)layoutFooter;
 
@@ -157,6 +181,9 @@ static CGFloat UserViewPadding = 15.0;
         _userView.layer.borderColor = [VODesignFactory profilePicBorderColor].CGColor;
         _userView.layer.borderWidth = 2.0;
 
+        _pictureView = [[UIImageView alloc] init];
+        _pictureView.backgroundColor = [UIColor redColor];
+        
         _footer = [[VONewsFeedPostFooter alloc] init];
         
         
@@ -171,6 +198,9 @@ static CGFloat UserViewPadding = 15.0;
         
         [self addSubview:_contentLabel];
         [self layoutContentLabel];
+        
+        [self addSubview:_pictureView];
+        [self layoutPictureView];
         
         [self addSubview:_footer];
         [self layoutFooter];
@@ -194,13 +224,7 @@ static CGFloat UserViewPadding = 15.0;
     _contentLabel.text = _post.body;
     _footer.post = _post;
     
-    if (post.isLiked) {
-        _likeButton.selected = YES;
-    }
-    else {
-        _likeButton.selected = NO;
-    }
-    
+    self.pictureView.image = _post.picture;
 }
 
 
@@ -364,6 +388,40 @@ static CGFloat UserViewPadding = 15.0;
 }
 
 
+- (void)layoutPictureView {
+    // TODO: Add assertions up here.
+    
+    UIView *superview = self.pictureView.superview;
+    
+    NSDictionary *views = NSDictionaryOfVariableBindings(_likeButton, _pictureView, _contentLabel);
+    NSDictionary *metrics = @{
+                                @"top": @10
+                              };
+
+    NSArray *centerConstraints =
+        [BMAutolayoutBuilder constraintsForHorizontalCenterView:self.pictureView];
+
+    static NSString *const topVFL1 = @"V:[_likeButton]->=top-[_pictureView]";
+    NSArray *topConstraints1 =
+        [NSLayoutConstraint constraintsWithVisualFormat:topVFL1
+                                                options:0
+                                                metrics:metrics
+                                                  views:views];
+    
+    static NSString *const topVFL2 = @"V:[_contentLabel]->=top-[_pictureView]";
+    NSArray *topConstraints2 =
+        [NSLayoutConstraint constraintsWithVisualFormat:topVFL2
+                                                options:0
+                                                metrics:metrics
+                                                  views:views];
+    
+    self.pictureView.translatesAutoresizingMaskIntoConstraints = NO;
+    [superview addConstraints:centerConstraints];
+    [superview addConstraints:topConstraints1];
+    [superview addConstraints:topConstraints2];
+}
+
+
 - (void)layoutFooter {
     // TODO: Abstract out these checks into some
     // defined macros.
@@ -380,25 +438,47 @@ static CGFloat UserViewPadding = 15.0;
                                 @"top": @15
                               };
     
-    NSDictionary *views = NSDictionaryOfVariableBindings(_footer, _contentLabel, _likeButton);
+    NSDictionary *views =
+        NSDictionaryOfVariableBindings(_footer, _contentLabel, _likeButton, _pictureView);
     
-    
-    static NSString *const verticalVFL1 = @"V:[_contentLabel]->=top-[_footer]|";
-    static NSString *const verticalVFL2 = @"V:[_likeButton]->=top-[_footer]|";
-    
-    NSArray *verticalConstraints1 =
+    //if (self.post.picture) {
+        // If the current post has an image,
+        // then layout the footer with respect
+        // to the image.
+        static NSString *const verticalVFL = @"V:[_pictureView]->=top-[_footer]|";
+        NSArray *verticalConstraints =
+            [NSLayoutConstraint constraintsWithVisualFormat:verticalVFL
+                                                    options:0
+                                                    metrics:metrics
+                                                      views:views];
+        
+        [superview addConstraints:verticalConstraints];
+        
+    //}
+    /*else {
+        // The current post has no image. Layout
+        // the post without considering the image.
+        static NSString *const verticalVFL1 = @"V:[_contentLabel]->=top-[_footer]|";
+        static NSString *const verticalVFL2 = @"V:[_likeButton]->=top-[_footer]|";
+        
+        NSArray *verticalConstraints1 =
         [NSLayoutConstraint constraintsWithVisualFormat:verticalVFL1
                                                 options:0
                                                 metrics:metrics
                                                   views:views];
-
-    NSArray *verticalConstraints2 =
-    [NSLayoutConstraint constraintsWithVisualFormat:verticalVFL2
-                                            options:0
-                                            metrics:metrics
-                                              views:views];
-
+        
+        NSArray *verticalConstraints2 =
+        [NSLayoutConstraint constraintsWithVisualFormat:verticalVFL2
+                                                options:0
+                                                metrics:metrics
+                                                  views:views];
+        [superview addConstraints:verticalConstraints1];
+        [superview addConstraints:verticalConstraints2];
+    }*/
     
+    
+
+    // Horizontal layout is the same with or without an image.
     static NSString *const horizonalVFL = @"H:|[_footer]|";
     
     NSArray *horizontalConstraints =
@@ -406,9 +486,7 @@ static CGFloat UserViewPadding = 15.0;
                                                 options:0
                                                 metrics:metrics
                                                   views:views];
-    
-    [superview addConstraints:verticalConstraints1];
-    [superview addConstraints:verticalConstraints2];
+
     [superview addConstraints:horizontalConstraints];
 }
 

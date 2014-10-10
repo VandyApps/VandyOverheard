@@ -22,7 +22,7 @@ static NSString *const FacebookGroupId = @"2255709804";
     NSString *const path =
         [NSString stringWithFormat:@"%@/feed?fields=likes.limit(1).summary(true),"
                                     "message,from,created_time,"
-                                    "comments.summary(true)", FacebookGroupId];
+                                    "comments.summary(true),picture", FacebookGroupId];
     
     void(^handler)(FBRequestConnection *, id, NSError *) =
         ^(FBRequestConnection *connection, id result, NSError *error) {

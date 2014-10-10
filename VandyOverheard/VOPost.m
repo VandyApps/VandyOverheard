@@ -21,8 +21,16 @@
             _replyCount =
                 [json[NetworkConstantReplies][NetworkConstantSummary][NetworkConstantCount] integerValue];
         }
+        
+        if (json[NetworkConstantPicture]) {
+            NSString *urlString = json[NetworkConstantPicture];
+            // TODO: Make this asynchronous
+            NSData *pictureData = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:urlString]];
+            _picture = [[UIImage alloc] initWithData:pictureData];
+        }
     }
     return self;
 }
+
 
 @end

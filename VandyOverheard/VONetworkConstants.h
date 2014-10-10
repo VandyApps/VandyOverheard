@@ -34,6 +34,8 @@ extern NSString *const NetworkConstantLikedBySelf;
 
 extern NSString *const NetworkConstantLikeCount;
 
+extern NSString *const NetworkConstantPicture;
+
 /**
  * @abstract
  *  Convert a facebook date to an actual date.

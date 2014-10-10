@@ -34,6 +34,8 @@ NSString *const NetworkConstantReplies = @"comments";
 
 NSString *const NetworkConstantLikedBySelf = @"user_likes";
 
+NSString *const NetworkConstantPicture = @"picture";
+
 NSDate *NSDateFromFacebookDate(id date) {
     static NSString *const format = @"YYYY'-'MM'-'dd'T'HH':'mm':'ss'+0000'";
     
