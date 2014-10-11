@@ -40,6 +40,7 @@
 		FCB1015E19E200D3008E3508 /* BMAutolayoutBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = FCB1015D19E200D3008E3508 /* BMAutolayoutBuilder.m */; };
 		FCBE2F2B19D9C454008D3AFC /* VONetworkConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = FCBE2F2A19D9C454008D3AFC /* VONetworkConstants.m */; };
 		FCDA0FD319E9A8E800B4139C /* VONewsFeedRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = FCDA0FD219E9A8E800B4139C /* VONewsFeedRequest.m */; };
+		FCDA0FD619E9B27A00B4139C /* VONewsFeedLoadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FCDA0FD519E9B27A00B4139C /* VONewsFeedLoadCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -106,6 +107,8 @@
 		FCBE2F2A19D9C454008D3AFC /* VONetworkConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VONetworkConstants.m; path = VandyOverheard/VONetworkConstants.m; sourceTree = "<group>"; };
 		FCDA0FD119E9A8E800B4139C /* VONewsFeedRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VONewsFeedRequest.h; sourceTree = "<group>"; };
 		FCDA0FD219E9A8E800B4139C /* VONewsFeedRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VONewsFeedRequest.m; sourceTree = "<group>"; };
+		FCDA0FD419E9B27A00B4139C /* VONewsFeedLoadCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VONewsFeedLoadCell.h; sourceTree = "<group>"; };
+		FCDA0FD519E9B27A00B4139C /* VONewsFeedLoadCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VONewsFeedLoadCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -287,6 +290,8 @@
 				FC17673D19DB3650007085D3 /* VONewsFeedPostCell.m */,
 				FC21317B19DD0C81002E624E /* VONewsFeedPostFooter.h */,
 				FC21317C19DD0C81002E624E /* VONewsFeedPostFooter.m */,
+				FCDA0FD419E9B27A00B4139C /* VONewsFeedLoadCell.h */,
+				FCDA0FD519E9B27A00B4139C /* VONewsFeedLoadCell.m */,
 			);
 			name = "News Feed";
 			sourceTree = "<group>";
@@ -409,6 +414,7 @@
 				FC9B954619D5ABDB00D99541 /* VOLoginFlowController.m in Sources */,
 				FC9B953E19D5A8A900D99541 /* VODesignFactory.m in Sources */,
 				FC53118819E49F5D009AA70E /* VOAppContext.m in Sources */,
+				FCDA0FD619E9B27A00B4139C /* VONewsFeedLoadCell.m in Sources */,
 				FC17673E19DB3650007085D3 /* VONewsFeedPostCell.m in Sources */,
 				FC81631219D7D05700F33DF0 /* VOContent.m in Sources */,
 				FCA1051D19D7C08400072D79 /* VONewsFeedController.m in Sources */,

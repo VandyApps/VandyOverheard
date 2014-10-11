@@ -12,6 +12,7 @@
 #import "VOAppContext.h"
 #import "VOFeedStore.h"
 #import "VONewsFeed.h"
+#import "VONewsFeedLoadCell.h"
 #import "VONewsFeedPostCell.h"
 #import "VONewsFeedRequest.h"
 #import "VOPost.h"
@@ -60,6 +61,7 @@
 @end
 
 static NSString *const PostCellId = @"PostCell";
+static NSString *const LoadCellId = @"LoadCell";
 
 @implementation VONewsFeedController
 
@@ -91,6 +93,9 @@ static NSString *const PostCellId = @"PostCell";
     
     [self.tableView registerClass:[VONewsFeedPostCell class]
            forCellReuseIdentifier:PostCellId];
+    [self.tableView registerClass:[VONewsFeedLoadCell class]
+           forCellReuseIdentifier:LoadCellId];
+    
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
@@ -115,17 +120,32 @@ static NSString *const PostCellId = @"PostCell";
 #pragma mark - UITableViewDataSource Methods
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    VONewsFeedPostCell *cell = [tableView dequeueReusableCellWithIdentifier:PostCellId
-                                                               forIndexPath:indexPath];
-    
-    cell.post = [self.newsFeed.posts objectAtIndex:indexPath.row];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    return cell;
+    if (indexPath.row == [self.newsFeed.posts count]) {
+        // This is the last cell in the table view.
+        VONewsFeedLoadCell *cell = [tableView dequeueReusableCellWithIdentifier:LoadCellId
+                                                                   forIndexPath:indexPath];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        return cell;
+    }
+    else {
+        VONewsFeedPostCell *cell = [tableView dequeueReusableCellWithIdentifier:PostCellId
+                                                                   forIndexPath:indexPath];
+        
+        cell.post = [self.newsFeed.posts objectAtIndex:indexPath.row];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        return cell;
+    }
 }
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.newsFeed.posts count];
+    if ([self.newsFeed.posts count] == 0) {
+        return 0;
+    }
+    else {
+        // Add the load cell.
+        return [self.newsFeed.posts count] + 1;
+    }
 }
 
 
@@ -137,7 +157,7 @@ static NSString *const PostCellId = @"PostCell";
 - (void)refreshTable {
     VONewsFeedRequest *request = [[VONewsFeedRequest alloc] init];
     request.offset = 0;
-    request.limit = 5;
+    request.limit = 30;
     
     __weak VONewsFeedController *weakSelf = self;
     void(^requestBlock)(VONewsFeed *) = ^(VONewsFeed *feed) {
