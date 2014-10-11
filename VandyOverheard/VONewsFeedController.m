@@ -18,7 +18,15 @@
 #import "VOPost.h"
 #import "VOProfilePictureStore.h"
 
+static NSInteger NewsFeedLimit = 30;
+
 @interface VONewsFeedController () <UITableViewDataSource, UITableViewDelegate>
+
+/**
+ * @abstract
+ *  The last offset that was used to fetch the news feed.
+ */
+@property (nonatomic, assign) NSInteger currentOffset;
 
 /**
  * @abstract
@@ -55,9 +63,33 @@
  *  Refresh the UITableView to update content
  *  so that it contains the most up-to-date
  *  data from Facebook
+ *
+ * @discussion
+ *  This method is meant to be used in conjunction
+ *  with the UIRefreshControl.
  */
-- (void)refreshTable;
+- (void)refreshControlValueDidChange;
 
+/**
+ * @abstract
+ *  Refreshes the table view using a delta value
+ *  that indicates how many posts have been
+ *  added since the last refresh.  This allows
+ *  for table view optimizations when loading.
+ *  This method simply updates the current newsfeed
+ *  with the UI in the table view.
+ *
+ * @discussion
+ *  This method should NEVER be called when loading
+ *  the table view for the first time. This should
+ *  only be called if there are posts in the table view
+ *  already being displayed, and a refresh is being
+ *  called. Incorrect delta values with can cause an
+ *  exception to be thrown by the table view. This method
+ *  assumes that the newsfeed has been updated before
+ *  it is called.
+ */
+- (void)refreshTableWithDelta:(NSInteger)delta;
 @end
 
 static NSString *const PostCellId = @"PostCell";
@@ -75,7 +107,7 @@ static NSString *const LoadCellId = @"LoadCell";
 
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self
-                            action:@selector(refreshTable)
+                            action:@selector(refreshControlValueDidChange)
                   forControlEvents:UIControlEventValueChanged];
     
     // Do any additional setup after loading the view.
@@ -102,12 +134,13 @@ static NSString *const LoadCellId = @"LoadCell";
 
 
 - (void)viewWillAppear:(BOOL)animated {
+    self.currentOffset = 0;
     VONewsFeedRequest *request = [[VONewsFeedRequest alloc] init];
-    request.offset = 0;
-    request.limit = 30;
+    request.offset = self.currentOffset;
+    request.limit = NewsFeedLimit;
     
     __weak VONewsFeedController *weakSelf = self;
-    void(^requestBlock)(VONewsFeed *) = ^(VONewsFeed *feed) {
+    void(^requestBlock)(VONewsFeed *, NSInteger) = ^(VONewsFeed *feed, NSInteger delta) {
         weakSelf.newsFeed = feed;
         [[VOAppContext sharedInstance].profilePictureStore downloadProfilePicturesForNewsFeed:feed];
         [weakSelf.tableView reloadData];
@@ -125,6 +158,18 @@ static NSString *const LoadCellId = @"LoadCell";
         VONewsFeedLoadCell *cell = [tableView dequeueReusableCellWithIdentifier:LoadCellId
                                                                    forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        // Whenever the load cell is reached in the table view,
+        // that means it is time to load more items into the
+        // news feed. Load cell is at the end of the table view.
+        self.currentOffset += 1;
+
+        VONewsFeedRequest *request = [[VONewsFeedRequest alloc] init];
+        request.limit = NewsFeedLimit;
+        request.offset = self.currentOffset;
+        
+        NSLog(@"Time to reload");
+        
         return cell;
     }
     else {
@@ -152,22 +197,53 @@ static NSString *const LoadCellId = @"LoadCell";
 #pragma mark - UITableViewDelegate Methods
 
 
-#pragma mark - Refreshing TablView
+#pragma mark - Refreshing UITableView
 
-- (void)refreshTable {
+- (void)refreshControlValueDidChange {
     VONewsFeedRequest *request = [[VONewsFeedRequest alloc] init];
+    self.currentOffset = 0;
     request.offset = 0;
-    request.limit = 30;
+    request.limit = NewsFeedLimit;
     
     __weak VONewsFeedController *weakSelf = self;
-    void(^requestBlock)(VONewsFeed *) = ^(VONewsFeed *feed) {
+    void(^requestBlock)(VONewsFeed *, NSInteger) = ^(VONewsFeed *feed, NSInteger delta) {
         weakSelf.newsFeed = feed;
         [[VOAppContext sharedInstance].profilePictureStore downloadProfilePicturesForNewsFeed:feed];
         [weakSelf.tableView reloadData];
-        [weakSelf.tableView reloadData];
+        [weakSelf.refreshControl endRefreshing];
     };
     [[VOAppContext sharedInstance].feedStore fetchNewsFeedWithRequest:request
                                                                 block:requestBlock];
+}
+
+
+- (void)refreshTableWithDelta:(NSInteger)delta {
+    
+    NSInteger count = [self.newsFeed.posts count];
+    NSInteger oldCount = count - delta;
+    
+    // Get the indexpath of the load cell in the table view
+    NSIndexPath *loadCellIndexPath = [NSIndexPath indexPathForItem:oldCount inSection:0];
+    
+    // Setup an array of index paths to insert into the table view.
+    NSMutableArray *indexPaths = [[NSMutableArray alloc] init];
+
+    // NOTE: Count is being offset by 1 to account for the addition
+    // of the new load cell at the end of the table view.
+    for (NSInteger i = oldCount; i < (count + 1); ++i) {
+        [indexPaths addObject:[NSIndexPath indexPathForItem:i inSection:0]];
+    }
+    
+    [self.tableView beginUpdates];
+
+    // Delete the load cell at the end of the table view.
+    [self.tableView deleteRowsAtIndexPaths:@[loadCellIndexPath]
+                          withRowAnimation:UITableViewRowAnimationNone];
+    // Add the new index paths.
+    [self.tableView insertRowsAtIndexPaths:indexPaths
+                          withRowAnimation:UITableViewRowAnimationNone];
+    
+    [self.tableView endUpdates];
 }
 
 

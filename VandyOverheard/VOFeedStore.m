@@ -9,6 +9,7 @@
 #import "VOFeedStore.h"
 
 #import "VONetworkAdapter.h"
+#import "VONetworkConstants.h"
 #import "VONewsFeed.h"
 #import "VONewsFeedRequest.h"
 #import "VOPost.h"
@@ -28,6 +29,13 @@
  */
 @property (nonatomic, strong) NSMutableArray *posts;
 
+/**
+ * @abstract
+ *  Parse a json set of posts to an array
+ *  of VOPosts.
+ */
+- (NSArray *)parsePosts:(id)json;
+
 @end
 
 @implementation VOFeedStore
@@ -38,6 +46,7 @@
     self = [super init];
     if (self) {
         _network = [[VONetworkAdapter alloc] init];
+        _posts = [[NSMutableArray alloc] init];
     }
     return self;
 }
@@ -50,8 +59,10 @@
 
 #pragma mark - Add
 
-- (void)addPosts:(NSArray *)posts {
+- (NSInteger)addPosts:(NSArray *)posts {
     // Update the given array with the new posts.
+    NSInteger oldCount = [self.posts count];
+    
     [self.posts removeObjectsInArray:posts];
     [self.posts addObjectsFromArray:posts];
     
@@ -62,26 +73,45 @@
         // Reverse chonological ordering.
         return [post2.creationDate compare:post1.creationDate];
     }];
+    
+    NSInteger newCount = [self.posts count];
+    return newCount - oldCount;
 }
 
 
 #pragma mark - Fetch
 
 - (void)fetchNewsFeedWithRequest:(VONewsFeedRequest *)request block:(NewsFeedBlock)block {
-    
+
+    __weak VOFeedStore *weakSelf = self;
     void(^requestBlock)(id, NSError *) = ^ (id result, NSError *error) {
         if (error) {
 #warning Handle Error
             NSLog(@"Error: %@", error);
         }
         else {
-            block([[VONewsFeed alloc] initWithJson:result]);
+            NSInteger delta = [weakSelf addPosts:[self parsePosts:result]];
+            VONewsFeed *feed = [[VONewsFeed alloc] initWithPosts:self.posts];
+            block(feed, delta);
         }
     };
     [self.network loadThreadWithOffset:request.offset
                                  limit:request.limit
                               response:requestBlock];
 
+}
+
+
+#pragma mark - Parse
+
+- (NSArray *)parsePosts:(id)json {
+    NSMutableArray *posts = [[NSMutableArray alloc] init];
+    for (id postJson in json[NetworkConstantData]) {
+        VOPost *post = [[VOPost alloc] initWithJson:postJson];
+        [posts addObject:post];
+    }
+    
+    return [posts copy];
 }
 
 

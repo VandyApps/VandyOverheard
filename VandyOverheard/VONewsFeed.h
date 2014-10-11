@@ -23,8 +23,9 @@
  * @abstract
  *  Designated initializer.
  *
- * @param json The json for a set of posts.
+ * @param posts An array of VOPost object to add
+ *  to the newsfeed.
  */
-- (instancetype)initWithJson:(id)json;
+- (instancetype)initWithPosts:(NSArray *)posts;
 
 @end

@@ -12,41 +12,16 @@
 #import "VONetworkConstants.h"
 #import "VOPost.h"
 
-@interface VONewsFeed ()
-
-/**
- * @abstract
- *  Reset the posts for the newsfeed using the results that
- *  come back after parsing the results.
- */
-- (void)parse:(id)result;
-
-@end
-
 @implementation VONewsFeed
 
 #pragma mark - Initialization
 
-- (instancetype)initWithJson:(id)json {
+- (instancetype)initWithPosts:(NSArray *)posts {
     self = [super init];
     if (self) {
-        [self parse:json];
+        _posts = posts;
     }
     return self;
 }
-
-
-#pragma mark - Parse
-
-- (void)parse:(id)json {
-    NSMutableArray *posts = [[NSMutableArray alloc] init];
-    for (id postJson in json[NetworkConstantData]) {
-        VOPost *post = [[VOPost alloc] initWithJson:postJson];
-        [posts addObject:post];
-    }
-    
-    _posts = [posts copy];
-}
-
 
 @end

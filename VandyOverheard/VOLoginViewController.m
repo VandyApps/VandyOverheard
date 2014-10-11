@@ -13,7 +13,7 @@
 #import "VODesignFactory.h"
 #import "VOUser.h"
 
-@interface VOLoginViewController ()
+@interface VOLoginViewController () <FBLoginViewDelegate>
 
 #pragma mark - Private Properties
 

@@ -12,7 +12,7 @@
 @class VOPost;
 @class VONewsFeedRequest;
 
-typedef void(^NewsFeedBlock)(VONewsFeed *newsFeed);
+typedef void(^NewsFeedBlock)(VONewsFeed *newsFeed, NSInteger delta);
 
 /**
  * @abstract
@@ -32,8 +32,19 @@ typedef void(^NewsFeedBlock)(VONewsFeed *newsFeed);
  *  Add the posts to the feed store.
  *  This will overwrite any posts that
  *  already exist in the store.
+ *
+ * @param posts An array of VOPost objects
+ *  to add to the FeedStore.
+ *
+ * @return The delta, or the difference
+ *  between the number of cells that
+ *  were in the posts before and after
+ *  this call. Note that the number of cells
+ *  added is not necessarily the same
+ *  as the number of cells in the posts
+ *  array, since some posts may be overwritten.
  */
-- (void)addPosts:(NSArray *)posts;
+- (NSInteger)addPosts:(NSArray *)posts;
 
 /**
  * @abstract
