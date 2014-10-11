@@ -33,6 +33,12 @@
 
 /**
  * @abstract
+ *  The refresh ui for the news feed.
+ */
+@property (nonatomic, strong) UIRefreshControl *refreshControl;
+
+/**
+ * @abstract
  *  Set the autolayout constaints for the table view
  *  property.
  *
@@ -41,6 +47,14 @@
  *  is initialized and added to the view hierarchy.
  */
 - (void)layoutTableView;
+
+/**
+ * @abstract
+ *  Refresh the UITableView to update content
+ *  so that it contains the most up-to-date
+ *  data from Facebook
+ */
+- (void)refreshTable;
 
 @end
 
@@ -55,7 +69,12 @@ static NSString *const PostCellId = @"PostCell";
     self.title = @"Vandy Overheard";
     
     self.view.backgroundColor = [UIColor whiteColor];
-    self.newsFeed = [[VONewsFeed alloc] init];
+
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self
+                            action:@selector(refreshTable)
+                  forControlEvents:UIControlEventValueChanged];
+    
     // Do any additional setup after loading the view.
 
     // Setup the table view.
@@ -64,6 +83,8 @@ static NSString *const PostCellId = @"PostCell";
     self.tableView.delegate = self;
     
     [self.view addSubview:self.tableView];
+    [self.tableView addSubview:self.refreshControl];
+    
     [self layoutTableView];
 
     
@@ -101,6 +122,18 @@ static NSString *const PostCellId = @"PostCell";
 
 
 #pragma mark - UITableViewDelegate Methods
+
+
+#pragma mark - Refreshing TablView
+
+- (void)refreshTable {
+    [[VOAppContext sharedInstance].feedStore fetchNewsFeed:^(VONewsFeed *newsFeed) {
+        _newsFeed = newsFeed;
+        [[VOAppContext sharedInstance].profilePictureStore downloadProfilePicturesForNewsFeed:newsFeed];
+        [self.refreshControl endRefreshing];
+        [self.tableView reloadData];
+    }];
+}
 
 
 #pragma mark - Layout
