@@ -39,6 +39,7 @@
 		FCA1051D19D7C08400072D79 /* VONewsFeedController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCA1051C19D7C08400072D79 /* VONewsFeedController.m */; };
 		FCB1015E19E200D3008E3508 /* BMAutolayoutBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = FCB1015D19E200D3008E3508 /* BMAutolayoutBuilder.m */; };
 		FCBE2F2B19D9C454008D3AFC /* VONetworkConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = FCBE2F2A19D9C454008D3AFC /* VONetworkConstants.m */; };
+		FCDA0FD319E9A8E800B4139C /* VONewsFeedRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = FCDA0FD219E9A8E800B4139C /* VONewsFeedRequest.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -103,6 +104,8 @@
 		FCB1015F19E20390008E3508 /* BMAutolayoutMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BMAutolayoutMacros.h; sourceTree = "<group>"; };
 		FCBE2F2919D9C454008D3AFC /* VONetworkConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VONetworkConstants.h; path = VandyOverheard/VONetworkConstants.h; sourceTree = "<group>"; };
 		FCBE2F2A19D9C454008D3AFC /* VONetworkConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VONetworkConstants.m; path = VandyOverheard/VONetworkConstants.m; sourceTree = "<group>"; };
+		FCDA0FD119E9A8E800B4139C /* VONewsFeedRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VONewsFeedRequest.h; sourceTree = "<group>"; };
+		FCDA0FD219E9A8E800B4139C /* VONewsFeedRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VONewsFeedRequest.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,6 +178,8 @@
 		FC97E48F19DB8038007F3B34 /* Stores */ = {
 			isa = PBXGroup;
 			children = (
+				FCDA0FD119E9A8E800B4139C /* VONewsFeedRequest.h */,
+				FCDA0FD219E9A8E800B4139C /* VONewsFeedRequest.m */,
 				FC53118F19E4C6BA009AA70E /* VOFeedStore.h */,
 				FC53119019E4C6BA009AA70E /* VOFeedStore.m */,
 				FC86AB7319DB9CCA00270842 /* VOProfilePictureStore.h */,
@@ -416,6 +421,7 @@
 				FC53119119E4C6BA009AA70E /* VOFeedStore.m in Sources */,
 				FC81630E19D7CF9E00F33DF0 /* VOPost.m in Sources */,
 				FC26EA3C19D8CADB00678927 /* VONewsFeed.m in Sources */,
+				FCDA0FD319E9A8E800B4139C /* VONewsFeedRequest.m in Sources */,
 				FC9B954219D5A8E900D99541 /* VOLoginViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

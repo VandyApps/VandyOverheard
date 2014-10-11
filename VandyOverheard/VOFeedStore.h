@@ -10,6 +10,7 @@
 
 @class VONewsFeed;
 @class VOPost;
+@class VONewsFeedRequest;
 
 typedef void(^NewsFeedBlock)(VONewsFeed *newsFeed);
 
@@ -37,7 +38,14 @@ typedef void(^NewsFeedBlock)(VONewsFeed *newsFeed);
 /**
  * @abstract
  *  Fetch the news fee ansynchronously.
+ *
+ * @param request The request with the desired parameters and
+ *  configuration for the newsfeed.
+ *
+ * @param block The callback block that gives the newsfeed
+ *  that was fetched.
  */
-- (void)fetchNewsFeed:(NewsFeedBlock)block;
+- (void)fetchNewsFeedWithRequest:(VONewsFeedRequest *)request
+                           block:(NewsFeedBlock)block;
 
 @end

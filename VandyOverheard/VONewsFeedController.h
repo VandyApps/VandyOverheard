@@ -11,7 +11,8 @@
 /**
  * @abstract
  *  Presents the main news feed thread for Overheard
- *  at Vanderbiltbilt.
+ *  at Vanderbiltbilt. This view controller should
+ *  always be presented inside a UINavigationController.
  */
 @interface VONewsFeedController : UIViewController
 

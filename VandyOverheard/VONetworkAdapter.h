@@ -26,12 +26,19 @@ typedef void(^NetworkResponseBlock)(id result, NSError *error);
 
 /**
  * @abstract
- *  Loads the main thread of the newsfeed. The results
+ *  Loads the thread of the newsfeed. The results
  *  will be passed to the reponse block parameter.
  *  This method will be called asynchronously but
  *  the response block will be executed on the
  *  main thread.
+ *
+ * @param The offset to get from the NewsFeed.
+ *
+ * @param The limit to the number of posts that are
+ *  fetched from the newsfeed.
  */
-- (void)loadMainThread:(NetworkResponseBlock)response;
+- (void)loadThreadWithOffset:(NSInteger)offset
+                        limit:(NSInteger)limit
+                    response:(NetworkResponseBlock)response;
 
 @end

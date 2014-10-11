@@ -13,6 +13,7 @@
 #import "VOFeedStore.h"
 #import "VONewsFeed.h"
 #import "VONewsFeedPostCell.h"
+#import "VONewsFeedRequest.h"
 #import "VOPost.h"
 #import "VOProfilePictureStore.h"
 
@@ -96,11 +97,18 @@ static NSString *const PostCellId = @"PostCell";
 
 
 - (void)viewWillAppear:(BOOL)animated {
-    [[VOAppContext sharedInstance].feedStore fetchNewsFeed:^(VONewsFeed *newsFeed) {
-        _newsFeed = newsFeed;
-        [[VOAppContext sharedInstance].profilePictureStore downloadProfilePicturesForNewsFeed:newsFeed];
-        [self.tableView reloadData];
-    }];
+    VONewsFeedRequest *request = [[VONewsFeedRequest alloc] init];
+    request.offset = 0;
+    request.limit = 30;
+    
+    __weak VONewsFeedController *weakSelf = self;
+    void(^requestBlock)(VONewsFeed *) = ^(VONewsFeed *feed) {
+        weakSelf.newsFeed = feed;
+        [[VOAppContext sharedInstance].profilePictureStore downloadProfilePicturesForNewsFeed:feed];
+        [weakSelf.tableView reloadData];
+    };
+    [[VOAppContext sharedInstance].feedStore fetchNewsFeedWithRequest:request
+                                                                block:requestBlock];
 }
 
 
@@ -127,12 +135,19 @@ static NSString *const PostCellId = @"PostCell";
 #pragma mark - Refreshing TablView
 
 - (void)refreshTable {
-    [[VOAppContext sharedInstance].feedStore fetchNewsFeed:^(VONewsFeed *newsFeed) {
-        _newsFeed = newsFeed;
-        [[VOAppContext sharedInstance].profilePictureStore downloadProfilePicturesForNewsFeed:newsFeed];
-        [self.refreshControl endRefreshing];
-        [self.tableView reloadData];
-    }];
+    VONewsFeedRequest *request = [[VONewsFeedRequest alloc] init];
+    request.offset = 0;
+    request.limit = 5;
+    
+    __weak VONewsFeedController *weakSelf = self;
+    void(^requestBlock)(VONewsFeed *) = ^(VONewsFeed *feed) {
+        weakSelf.newsFeed = feed;
+        [[VOAppContext sharedInstance].profilePictureStore downloadProfilePicturesForNewsFeed:feed];
+        [weakSelf.tableView reloadData];
+        [weakSelf.tableView reloadData];
+    };
+    [[VOAppContext sharedInstance].feedStore fetchNewsFeedWithRequest:request
+                                                                block:requestBlock];
 }
 
 

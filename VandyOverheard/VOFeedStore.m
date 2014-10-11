@@ -10,6 +10,7 @@
 
 #import "VONetworkAdapter.h"
 #import "VONewsFeed.h"
+#import "VONewsFeedRequest.h"
 #import "VOPost.h"
 
 @interface VOFeedStore ()
@@ -66,15 +67,21 @@
 
 #pragma mark - Fetch
 
-- (void)fetchNewsFeed:(NewsFeedBlock)block {
-    [self.network loadMainThread:^(id result, NSError *error) {
+- (void)fetchNewsFeedWithRequest:(VONewsFeedRequest *)request block:(NewsFeedBlock)block {
+    
+    void(^requestBlock)(id, NSError *) = ^ (id result, NSError *error) {
         if (error) {
-#warning Handle error here!
+#warning Handle Error
+            NSLog(@"Error: %@", error);
         }
         else {
             block([[VONewsFeed alloc] initWithJson:result]);
         }
-    }];
+    };
+    [self.network loadThreadWithOffset:request.offset
+                                 limit:request.limit
+                              response:requestBlock];
+
 }
 
 
