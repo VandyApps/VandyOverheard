@@ -35,12 +35,6 @@
 
 /**
  * @abstract
- *  The profile picture store for the application.
- */
-@property (nonatomic, strong, readonly) VOProfilePictureStore *profilePicStore;
-
-/**
- * @abstract
  *  The newsfeed store for the application.
  */
 @property (nonatomic, strong, readonly) VOFeedStore *feedStore;

@@ -77,7 +77,7 @@ static NSString *const PostCellId = @"PostCell";
 - (void)viewWillAppear:(BOOL)animated {
     [[VOAppContext sharedInstance].feedStore fetchNewsFeed:^(VONewsFeed *newsFeed) {
         _newsFeed = newsFeed;
-        [[VOAppContext sharedInstance].profilePicStore downloadProfilePicturesForNewsFeed:newsFeed];
+        [[VOAppContext sharedInstance].profilePictureStore downloadProfilePicturesForNewsFeed:newsFeed];
         [self.tableView reloadData];
     }];
 }
