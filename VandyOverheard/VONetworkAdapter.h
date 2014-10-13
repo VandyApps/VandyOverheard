@@ -32,13 +32,20 @@ typedef void(^NetworkResponseBlock)(id result, NSError *error);
  *  the response block will be executed on the
  *  main thread.
  *
- * @param The offset to get from the NewsFeed.
- *
  * @param The limit to the number of posts that are
  *  fetched from the newsfeed.
  */
-- (void)loadThreadWithOffset:(NSInteger)offset
-                        limit:(NSInteger)limit
-                    response:(NetworkResponseBlock)response;
+- (void)loadThreadWithLimit:(NSInteger)limit
+                   response:(NetworkResponseBlock)response;
+
+/**
+ * @abstract
+ *  Loads the next set of posts for the news feed. This will be
+ *  a continued thread from the last time a thread was fetched.
+ *
+ * @discussion
+ *  Note that loadThreadWithLimit: must be called at least once.
+ */
+- (void)loadThreadForNextPage:(NetworkResponseBlock)response;
 
 @end

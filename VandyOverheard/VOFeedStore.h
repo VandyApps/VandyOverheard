@@ -12,7 +12,7 @@
 @class VOPost;
 @class VONewsFeedRequest;
 
-typedef void(^NewsFeedBlock)(VONewsFeed *newsFeed, NSInteger delta);
+typedef void(^VONewsFeedBlock)(VONewsFeed *newsFeed, NSInteger delta);
 
 /**
  * @abstract
@@ -48,7 +48,7 @@ typedef void(^NewsFeedBlock)(VONewsFeed *newsFeed, NSInteger delta);
 
 /**
  * @abstract
- *  Fetch the news fee ansynchronously.
+ *  Fetch the news feed ansynchronously.
  *
  * @param request The request with the desired parameters and
  *  configuration for the newsfeed.
@@ -57,6 +57,16 @@ typedef void(^NewsFeedBlock)(VONewsFeed *newsFeed, NSInteger delta);
  *  that was fetched.
  */
 - (void)fetchNewsFeedWithRequest:(VONewsFeedRequest *)request
-                           block:(NewsFeedBlock)block;
+                           block:(VONewsFeedBlock)block;
+
+/**
+ * @abstract
+ *  Fetch the news feed associated with the next
+ *  page of available content.
+ *
+ * @param block The block that is called asynchonously
+ *  with the next set of content.
+ */
+- (void)fetchNewsFeedForNextPage:(VONewsFeedBlock)block;
 
 @end

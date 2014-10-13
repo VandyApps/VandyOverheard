@@ -14,4 +14,9 @@
 
 @property (nonatomic, strong) VOPost *post;
 
+/**
+ * @return The height of the footer.
+ */
++ (CGFloat)height;
+
 @end

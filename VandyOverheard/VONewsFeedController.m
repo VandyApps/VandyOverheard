@@ -24,9 +24,9 @@ static NSInteger NewsFeedLimit = 30;
 
 /**
  * @abstract
- *  The last offset that was used to fetch the news feed.
+ *  A hash table for cells displayed in the table view.
  */
-@property (nonatomic, assign) NSInteger currentOffset;
+@property (nonatomic, strong) NSMutableDictionary *cellHeightHash;
 
 /**
  * @abstract
@@ -102,6 +102,7 @@ static NSString *const LoadCellId = @"LoadCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"Vandy Overheard";
+    self.cellHeightHash = [[NSMutableDictionary alloc] init];
     
     self.view.backgroundColor = [UIColor whiteColor];
 
@@ -134,9 +135,7 @@ static NSString *const LoadCellId = @"LoadCell";
 
 
 - (void)viewWillAppear:(BOOL)animated {
-    self.currentOffset = 0;
     VONewsFeedRequest *request = [[VONewsFeedRequest alloc] init];
-    request.offset = self.currentOffset;
     request.limit = NewsFeedLimit;
     
     __weak VONewsFeedController *weakSelf = self;
@@ -152,7 +151,9 @@ static NSString *const LoadCellId = @"LoadCell";
 
 #pragma mark - UITableViewDataSource Methods
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)tableView
+         cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+
     if (indexPath.row == [self.newsFeed.posts count]) {
         // This is the last cell in the table view.
         VONewsFeedLoadCell *cell = [tableView dequeueReusableCellWithIdentifier:LoadCellId
@@ -162,13 +163,22 @@ static NSString *const LoadCellId = @"LoadCell";
         // Whenever the load cell is reached in the table view,
         // that means it is time to load more items into the
         // news feed. Load cell is at the end of the table view.
-        self.currentOffset += 1;
 
         VONewsFeedRequest *request = [[VONewsFeedRequest alloc] init];
         request.limit = NewsFeedLimit;
-        request.offset = self.currentOffset;
         
-        NSLog(@"Time to reload");
+        __weak VONewsFeedController *weakSelf = self;
+        VONewsFeedBlock requestBlock = ^(VONewsFeed *feed, NSInteger delta){
+            _newsFeed = feed;
+            [[VOAppContext sharedInstance].profilePictureStore downloadProfilePicturesForNewsFeed:feed];
+            [weakSelf refreshTableWithDelta:delta];
+        };
+
+        [[VOAppContext sharedInstance].feedStore fetchNewsFeedForNextPage:requestBlock];
+        
+        // Force the cell to perform the
+        [cell layoutIfNeeded];
+        self.cellHeightHash[indexPath] = @(CGRectGetHeight(cell.frame));
         
         return cell;
     }
@@ -194,15 +204,18 @@ static NSString *const LoadCellId = @"LoadCell";
 }
 
 
-#pragma mark - UITableViewDelegate Methods
+- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (self.cellHeightHash[indexPath]) {
+        [self.cellHeightHash[indexPath] integerValue];
+    }
+    return 44.f;
+}
 
 
 #pragma mark - Refreshing UITableView
 
 - (void)refreshControlValueDidChange {
     VONewsFeedRequest *request = [[VONewsFeedRequest alloc] init];
-    self.currentOffset = 0;
-    request.offset = 0;
     request.limit = NewsFeedLimit;
     
     __weak VONewsFeedController *weakSelf = self;
@@ -222,28 +235,25 @@ static NSString *const LoadCellId = @"LoadCell";
     NSInteger count = [self.newsFeed.posts count];
     NSInteger oldCount = count - delta;
     
-    // Get the indexpath of the load cell in the table view
-    NSIndexPath *loadCellIndexPath = [NSIndexPath indexPathForItem:oldCount inSection:0];
-    
+    if (count <= oldCount) {
+        // No new data was added, don't do anything.
+        return;
+    }
+
     // Setup an array of index paths to insert into the table view.
     NSMutableArray *indexPaths = [[NSMutableArray alloc] init];
 
-    // NOTE: Count is being offset by 1 to account for the addition
-    // of the new load cell at the end of the table view.
-    for (NSInteger i = oldCount; i < (count + 1); ++i) {
+    for (NSInteger i = oldCount; i < count; ++i) {
         [indexPaths addObject:[NSIndexPath indexPathForItem:i inSection:0]];
     }
     
-    [self.tableView beginUpdates];
+    // [self.tableView beginUpdates];
 
-    // Delete the load cell at the end of the table view.
-    [self.tableView deleteRowsAtIndexPaths:@[loadCellIndexPath]
-                          withRowAnimation:UITableViewRowAnimationNone];
     // Add the new index paths.
     [self.tableView insertRowsAtIndexPaths:indexPaths
                           withRowAnimation:UITableViewRowAnimationNone];
     
-    [self.tableView endUpdates];
+    // [self.tableView endUpdates];
 }
 
 

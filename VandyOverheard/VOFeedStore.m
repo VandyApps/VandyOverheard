@@ -81,7 +81,7 @@
 
 #pragma mark - Fetch
 
-- (void)fetchNewsFeedWithRequest:(VONewsFeedRequest *)request block:(NewsFeedBlock)block {
+- (void)fetchNewsFeedWithRequest:(VONewsFeedRequest *)request block:(VONewsFeedBlock)block {
 
     __weak VOFeedStore *weakSelf = self;
     void(^requestBlock)(id, NSError *) = ^ (id result, NSError *error) {
@@ -95,10 +95,26 @@
             block(feed, delta);
         }
     };
-    [self.network loadThreadWithOffset:request.offset
-                                 limit:request.limit
-                              response:requestBlock];
+    [self.network loadThreadWithLimit:request.limit
+                             response:requestBlock];
 
+}
+
+
+- (void)fetchNewsFeedForNextPage:(VONewsFeedBlock)block {
+    __weak VOFeedStore *weakSelf = self;
+    void(^requestBlock)(id, NSError *) = ^ (id result, NSError *error) {
+        if (error) {
+#warning Handle Error
+            NSLog(@"Error: %@", error);
+        }
+        else {
+            NSInteger delta = [weakSelf addPosts:[self parsePosts:result]];
+            VONewsFeed *feed = [[VONewsFeed alloc] initWithPosts:self.posts];
+            block(feed, delta);
+        }
+    };
+    [self.network loadThreadForNextPage:requestBlock];
 }
 
 

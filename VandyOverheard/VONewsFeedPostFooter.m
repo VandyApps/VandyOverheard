@@ -11,6 +11,8 @@
 #import "VODesignFactory.h"
 #import "VOPost.h"
 
+static CGFloat FooterHeight = 20.f;
+
 @interface VONewsFeedPostFooter ()
 
 /**
@@ -34,6 +36,13 @@
 @end
 
 @implementation VONewsFeedPostFooter
+
+#pragma mark - Static Methods
+
++ (CGFloat)height {
+    return FooterHeight;
+}
+
 
 #pragma mark - Accessors
 
@@ -114,7 +123,7 @@
                                         toItem:nil
                                      attribute:0
                                     multiplier:1
-                                      constant:20.f];
+                                      constant:FooterHeight];
     
     self.footerLabel.translatesAutoresizingMaskIntoConstraints = NO;
     [self addConstraints:horizontaFooterConstraints];
