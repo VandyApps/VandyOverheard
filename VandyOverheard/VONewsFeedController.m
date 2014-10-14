@@ -142,7 +142,7 @@ static NSString *const LoadCellId = @"LoadCell";
 
     VOFeedStore *feedStore = [VOAppContext sharedInstance].feedStore;
     
-    if (indexPath.row == [feedStore.posts count]) {
+    if (indexPath.row == [feedStore count]) {
         // This is the last cell in the table view.
         VONewsFeedLoadCell *cell = [tableView dequeueReusableCellWithIdentifier:LoadCellId
                                                                    forIndexPath:indexPath];
@@ -172,13 +172,13 @@ static NSString *const LoadCellId = @"LoadCell";
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    VOFeedStore *feed = [VOAppContext sharedInstance].feedStore;
-    if ([feed.posts count] == 0) {
+    VOFeedStore *feedStore = [VOAppContext sharedInstance].feedStore;
+    if ([feedStore count] == 0) {
         return 0;
     }
     else {
         // Add the load cell.
-        return [feed.posts count] + 1;
+        return [feedStore count] + 1;
     }
 }
 
@@ -202,7 +202,7 @@ static NSString *const LoadCellId = @"LoadCell";
 - (void)refreshTableWithDelta:(NSInteger)delta {
     
     VOFeedStore *feedStore = [VOAppContext sharedInstance].feedStore;
-    NSInteger count = [feedStore.posts count];
+    NSInteger count = [feedStore count];
     NSInteger oldCount = count - delta;
     
     if (count <= oldCount) {
@@ -247,7 +247,7 @@ static NSString *const LoadCellId = @"LoadCell";
     // If the number of posts is less than or equal to
     // the number of posts fetched per network call, then
     // just refresh the entire table view.
-    if (store.networkLimit >= [store.posts count]) {
+    if (store.networkLimit >= [store count]) {
         [self.tableView reloadData];
     }
     else {

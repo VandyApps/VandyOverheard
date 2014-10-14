@@ -69,6 +69,11 @@ static NSInteger NewsFeedLimit = 30;
 }
 
 
+- (NSInteger)count {
+    return self.posts.count;
+}
+
+
 - (void (^)(NSArray *, VONewsFeedRequest *))successBlock {
     if (_successBlock == nil) {
         __weak VOFeedStore *weakSelf = self;
@@ -106,13 +111,6 @@ static NSInteger NewsFeedLimit = 30;
         _mPosts = [[NSMutableArray alloc] init];
     }
     return self;
-}
-
-
-#pragma mark - Accessors
-
-- (NSInteger)count {
-    return self.posts.count;
 }
 
 
