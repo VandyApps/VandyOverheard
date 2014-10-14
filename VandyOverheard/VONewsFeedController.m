@@ -11,29 +11,19 @@
 #import "BMAutolayoutBuilder.h"
 #import "VOAppContext.h"
 #import "VOFeedStore.h"
-#import "VONewsFeed.h"
+#import "VOFeedStoreDelegate.h"
 #import "VONewsFeedLoadCell.h"
 #import "VONewsFeedPostCell.h"
-#import "VONewsFeedRequest.h"
 #import "VOPost.h"
 #import "VOProfilePictureStore.h"
 
-static NSInteger NewsFeedLimit = 30;
-
-@interface VONewsFeedController () <UITableViewDataSource, UITableViewDelegate>
+@interface VONewsFeedController () <UITableViewDataSource, UITableViewDelegate, VOFeedStoreDelegate>
 
 /**
  * @abstract
  *  A hash table for cells displayed in the table view.
  */
 @property (nonatomic, strong) NSMutableDictionary *cellHeightHash;
-
-/**
- * @abstract
- *  The news feed data associated with this
- *  controller.
- */
-@property (nonatomic, strong) VONewsFeed *newsFeed;
 
 /**
  * @abstract
@@ -90,6 +80,7 @@ static NSInteger NewsFeedLimit = 30;
  *  it is called.
  */
 - (void)refreshTableWithDelta:(NSInteger)delta;
+
 @end
 
 static NSString *const PostCellId = @"PostCell";
@@ -131,21 +122,16 @@ static NSString *const LoadCellId = @"LoadCell";
     
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
+    // TODO: Better to use Notification Center
+    // than delegation if this object
+    // is globally accessible.
+    [VOAppContext sharedInstance].feedStore.delegate = self;
 }
 
 
 - (void)viewWillAppear:(BOOL)animated {
-    VONewsFeedRequest *request = [[VONewsFeedRequest alloc] init];
-    request.limit = NewsFeedLimit;
-    
-    __weak VONewsFeedController *weakSelf = self;
-    void(^requestBlock)(VONewsFeed *, NSInteger) = ^(VONewsFeed *feed, NSInteger delta) {
-        weakSelf.newsFeed = feed;
-        [[VOAppContext sharedInstance].profilePictureStore downloadProfilePicturesForNewsFeed:feed];
-        [weakSelf.tableView reloadData];
-    };
-    [[VOAppContext sharedInstance].feedStore fetchNewsFeedWithRequest:request
-                                                                block:requestBlock];
+    [[VOAppContext sharedInstance].feedStore fetchFirstPage];
 }
 
 
@@ -154,7 +140,9 @@ static NSString *const LoadCellId = @"LoadCell";
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 
-    if (indexPath.row == [self.newsFeed.posts count]) {
+    VOFeedStore *feedStore = [VOAppContext sharedInstance].feedStore;
+    
+    if (indexPath.row == [feedStore.posts count]) {
         // This is the last cell in the table view.
         VONewsFeedLoadCell *cell = [tableView dequeueReusableCellWithIdentifier:LoadCellId
                                                                    forIndexPath:indexPath];
@@ -164,17 +152,7 @@ static NSString *const LoadCellId = @"LoadCell";
         // that means it is time to load more items into the
         // news feed. Load cell is at the end of the table view.
 
-        VONewsFeedRequest *request = [[VONewsFeedRequest alloc] init];
-        request.limit = NewsFeedLimit;
-        
-        __weak VONewsFeedController *weakSelf = self;
-        VONewsFeedBlock requestBlock = ^(VONewsFeed *feed, NSInteger delta){
-            _newsFeed = feed;
-            [[VOAppContext sharedInstance].profilePictureStore downloadProfilePicturesForNewsFeed:feed];
-            [weakSelf refreshTableWithDelta:delta];
-        };
-
-        [[VOAppContext sharedInstance].feedStore fetchNewsFeedForNextPage:requestBlock];
+        [feedStore fetchNextPage];
         
         // Force the cell to perform the
         [cell layoutIfNeeded];
@@ -186,7 +164,7 @@ static NSString *const LoadCellId = @"LoadCell";
         VONewsFeedPostCell *cell = [tableView dequeueReusableCellWithIdentifier:PostCellId
                                                                    forIndexPath:indexPath];
         
-        cell.post = [self.newsFeed.posts objectAtIndex:indexPath.row];
+        cell.post = feedStore.posts[indexPath.row];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }
@@ -194,12 +172,13 @@ static NSString *const LoadCellId = @"LoadCell";
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if ([self.newsFeed.posts count] == 0) {
+    VOFeedStore *feed = [VOAppContext sharedInstance].feedStore;
+    if ([feed.posts count] == 0) {
         return 0;
     }
     else {
         // Add the load cell.
-        return [self.newsFeed.posts count] + 1;
+        return [feed.posts count] + 1;
     }
 }
 
@@ -208,6 +187,7 @@ static NSString *const LoadCellId = @"LoadCell";
     if (self.cellHeightHash[indexPath]) {
         [self.cellHeightHash[indexPath] integerValue];
     }
+    // Better approximation needed here.
     return 44.f;
 }
 
@@ -215,24 +195,14 @@ static NSString *const LoadCellId = @"LoadCell";
 #pragma mark - Refreshing UITableView
 
 - (void)refreshControlValueDidChange {
-    VONewsFeedRequest *request = [[VONewsFeedRequest alloc] init];
-    request.limit = NewsFeedLimit;
-    
-    __weak VONewsFeedController *weakSelf = self;
-    void(^requestBlock)(VONewsFeed *, NSInteger) = ^(VONewsFeed *feed, NSInteger delta) {
-        weakSelf.newsFeed = feed;
-        [[VOAppContext sharedInstance].profilePictureStore downloadProfilePicturesForNewsFeed:feed];
-        [weakSelf.tableView reloadData];
-        [weakSelf.refreshControl endRefreshing];
-    };
-    [[VOAppContext sharedInstance].feedStore fetchNewsFeedWithRequest:request
-                                                                block:requestBlock];
+    [[VOAppContext sharedInstance].feedStore fetchNextPage];
 }
 
 
 - (void)refreshTableWithDelta:(NSInteger)delta {
     
-    NSInteger count = [self.newsFeed.posts count];
+    VOFeedStore *feedStore = [VOAppContext sharedInstance].feedStore;
+    NSInteger count = [feedStore.posts count];
     NSInteger oldCount = count - delta;
     
     if (count <= oldCount) {
@@ -254,6 +224,36 @@ static NSString *const LoadCellId = @"LoadCell";
                           withRowAnimation:UITableViewRowAnimationNone];
     
     // [self.tableView endUpdates];
+}
+
+
+#pragma mark - VOFeedStoreDelegate Methods
+
+- (void)feedStore:(VOFeedStore *)store failedWithError:(NSError *)error {
+#warning Handle error!
+}
+
+
+- (void)feedStore:(VOFeedStore *)store didUpdateWithDelta:(NSInteger)delta {
+
+    if ([self.refreshControl isRefreshing]) {
+        [self.refreshControl endRefreshing];
+    }
+
+    [[VOAppContext sharedInstance].profilePictureStore downloadProfilePicturesForPosts:store.posts];
+
+    // TODO: Better way to do this.
+    
+    // If the number of posts is less than or equal to
+    // the number of posts fetched per network call, then
+    // just refresh the entire table view.
+    if (store.networkLimit >= [store.posts count]) {
+        [self.tableView reloadData];
+    }
+    else {
+        [self refreshTableWithDelta:delta];
+    }
+    
 }
 
 

@@ -8,7 +8,6 @@
 
 #import "VOProfilePictureStore.h"
 
-#import "VONewsFeed.h"
 #import "VOPost.h"
 #import "VOUser.h"
 
@@ -70,8 +69,8 @@
 }
 
 
-- (void)downloadProfilePicturesForNewsFeed:(VONewsFeed *)feed {
-    for (VOPost *post in feed.posts) {
+- (void)downloadProfilePicturesForPosts:(NSArray *)posts {
+    for (VOPost *post in posts) {
         [self downloadProfilePictureForUser:post.author];
     }
 }

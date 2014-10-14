@@ -8,11 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
-@class VONewsFeed;
+#import "VOFeedStoreDelegate.h"
+
 @class VOPost;
 @class VONewsFeedRequest;
 
-typedef void(^VONewsFeedBlock)(VONewsFeed *newsFeed, NSInteger delta);
+// TODO: Create new enumeration object to separate
+// responsibilities of access and collect.
+typedef void(^VONewsFeedBlock)(NSInteger delta);
 
 /**
  * @abstract
@@ -23,9 +26,29 @@ typedef void(^VONewsFeedBlock)(VONewsFeed *newsFeed, NSInteger delta);
 
 /**
  * @abstract
+ *  The limit on the number of posts fetched
+ *  every time a network call is made.
+ */
+@property (nonatomic, assign, readonly) NSInteger networkLimit;
+
+/**
+ * @abstract
+ *  The delegate for the NewsFeedStore.
+ */
+@property (nonatomic, weak) id<VOFeedStoreDelegate> delegate;
+
+/**
+ * @abstract
  *  The number of posts in the store.
  */
 @property (nonatomic, assign, readonly) NSInteger count;
+
+/**
+ * @abstract
+ *  An array of posts related to this
+ *  feed.
+ */
+@property (nonatomic, copy, readonly) NSArray *posts;
 
 /**
  * @abstract
@@ -48,25 +71,31 @@ typedef void(^VONewsFeedBlock)(VONewsFeed *newsFeed, NSInteger delta);
 
 /**
  * @abstract
- *  Fetch the news feed ansynchronously.
+ *  Get the first set of posts from the news
+ *  feed.
  *
- * @param request The request with the desired parameters and
- *  configuration for the newsfeed.
- *
- * @param block The callback block that gives the newsfeed
- *  that was fetched.
+ * @discussion
+ *  This method should only be called on the
+ *  main thread.
  */
-- (void)fetchNewsFeedWithRequest:(VONewsFeedRequest *)request
-                           block:(VONewsFeedBlock)block;
+// TODO: Modify this method to throw some error
+// if trying to fetch while a page is in the
+// process of already being fetched.
+- (void)fetchFirstPage;
 
 /**
  * @abstract
- *  Fetch the news feed associated with the next
- *  page of available content.
+ *  Get the next set of posts from the newsfeed.
+ *  fetchFirstPage must be called at least once
+ *  before calling this method.
  *
- * @param block The block that is called asynchonously
- *  with the next set of content.
+ * @discussion
+ *  This method should only be called on the main
+ *  thread.
  */
-- (void)fetchNewsFeedForNextPage:(VONewsFeedBlock)block;
+// TODO: Modify this method to throw some error
+// if trying to fetch while a page is in the
+// process of already being fetched.
+- (void)fetchNextPage;
 
 @end

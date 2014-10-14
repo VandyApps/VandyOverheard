@@ -10,11 +10,24 @@
 
 #import "VONetworkAdapter.h"
 #import "VONetworkConstants.h"
-#import "VONewsFeed.h"
 #import "VONewsFeedRequest.h"
 #import "VOPost.h"
 
 @interface VOFeedStore ()
+
+/**
+ * @abstract
+ *  The success block that should be called during any
+ *  successful network call.
+ */
+@property (nonatomic, copy) void(^successBlock)(NSArray *posts, VONewsFeedRequest *next);
+
+/**
+ * @abstract
+ *  The failure block that should be called during any
+ *  failed network call.
+ */
+@property (nonatomic, copy) void(^failureBlock)(NSError *error);
 
 /**
  * @abstract
@@ -25,20 +38,64 @@
 
 /**
  * @abstract
- *  An array of all the posts.
+ *  An array of all the posts in a mutable
+ *  array for convenient updates.
  */
-@property (nonatomic, strong) NSMutableArray *posts;
+@property (nonatomic, strong) NSMutableArray *mPosts;
 
 /**
  * @abstract
- *  Parse a json set of posts to an array
- *  of VOPosts.
+ *  The request for the next page of
+ *  posts. If no requests have been made
+ *  yet, this will be nil.
  */
-- (NSArray *)parsePosts:(id)json;
+@property (nonatomic, strong) VONewsFeedRequest *next;
 
 @end
 
+static NSInteger NewsFeedLimit = 30;
+
 @implementation VOFeedStore
+
+#pragma mark - Accessors
+
+- (NSInteger)networkLimit {
+    return NewsFeedLimit;
+}
+
+
+- (NSArray *)posts {
+    return [self.mPosts copy];
+}
+
+
+- (void (^)(NSArray *, VONewsFeedRequest *))successBlock {
+    if (_successBlock == nil) {
+        __weak VOFeedStore *weakSelf = self;
+        _successBlock = ^(NSArray *posts, VONewsFeedRequest *next) {
+            NSInteger delta = [weakSelf addPosts:posts];
+            weakSelf.next = next;
+            if (weakSelf.delegate) {
+                [weakSelf.delegate feedStore:weakSelf didUpdateWithDelta:delta];
+            }
+        };
+    }
+    return _successBlock;
+}
+
+
+- (void (^)(NSError *))failureBlock {
+    if (_failureBlock == nil) {
+        __weak VOFeedStore *weakSelf = self;
+        _failureBlock = ^(NSError *error) {
+            if (weakSelf.delegate) {
+                [weakSelf.delegate feedStore:weakSelf failedWithError:error];
+            }
+        };
+    }
+    return _failureBlock;
+}
+
 
 #pragma mark - Initialization
 
@@ -46,10 +103,11 @@
     self = [super init];
     if (self) {
         _network = [[VONetworkAdapter alloc] init];
-        _posts = [[NSMutableArray alloc] init];
+        _mPosts = [[NSMutableArray alloc] init];
     }
     return self;
 }
+
 
 #pragma mark - Accessors
 
@@ -57,17 +115,18 @@
     return self.posts.count;
 }
 
+
 #pragma mark - Add
 
 - (NSInteger)addPosts:(NSArray *)posts {
     // Update the given array with the new posts.
     NSInteger oldCount = [self.posts count];
     
-    [self.posts removeObjectsInArray:posts];
-    [self.posts addObjectsFromArray:posts];
+    [self.mPosts removeObjectsInArray:posts];
+    [self.mPosts addObjectsFromArray:posts];
     
     // Sort them.
-    [self.posts sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+    [self.mPosts sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
         VOPost *post1 = obj1;
         VOPost *post2 = obj2;
         // Reverse chonological ordering.
@@ -79,55 +138,31 @@
 }
 
 
-#pragma mark - Fetch
+#pragma mark - Network
 
-- (void)fetchNewsFeedWithRequest:(VONewsFeedRequest *)request block:(VONewsFeedBlock)block {
-
-    __weak VOFeedStore *weakSelf = self;
-    void(^requestBlock)(id, NSError *) = ^ (id result, NSError *error) {
-        if (error) {
-#warning Handle Error
-            NSLog(@"Error: %@", error);
-        }
-        else {
-            NSInteger delta = [weakSelf addPosts:[self parsePosts:result]];
-            VONewsFeed *feed = [[VONewsFeed alloc] initWithPosts:self.posts];
-            block(feed, delta);
-        }
-    };
-    [self.network loadThreadWithLimit:request.limit
-                             response:requestBlock];
-
-}
-
-
-- (void)fetchNewsFeedForNextPage:(VONewsFeedBlock)block {
-    __weak VOFeedStore *weakSelf = self;
-    void(^requestBlock)(id, NSError *) = ^ (id result, NSError *error) {
-        if (error) {
-#warning Handle Error
-            NSLog(@"Error: %@", error);
-        }
-        else {
-            NSInteger delta = [weakSelf addPosts:[self parsePosts:result]];
-            VONewsFeed *feed = [[VONewsFeed alloc] initWithPosts:self.posts];
-            block(feed, delta);
-        }
-    };
-    [self.network loadThreadForNextPage:requestBlock];
-}
-
-
-#pragma mark - Parse
-
-- (NSArray *)parsePosts:(id)json {
-    NSMutableArray *posts = [[NSMutableArray alloc] init];
-    for (id postJson in json[NetworkConstantData]) {
-        VOPost *post = [[VOPost alloc] initWithJson:postJson];
-        [posts addObject:post];
-    }
+- (void)fetchFirstPage {
+    VONewsFeedRequest *request = [[VONewsFeedRequest alloc] init];
+    request.params = @{
+                      @"fields": @"likes.summary(true),"
+                                  "message,from,created_time,"
+                                  "comments.summary(true),"
+                                  "picture",
+                      @"limit": @(self.networkLimit)
+                     };
     
-    return [posts copy];
+    request.successBlock = self.successBlock;
+    request.failureBlock = self.failureBlock;
+    [self.network processRequest:request];
+}
+
+
+- (void)fetchNextPage {
+    // TODO: Throw an exception if fetch first page
+    // was not called at least once. Can check this
+    // by checking if next property is nil.
+
+    self.next.successBlock = self.successBlock;
+    [self.network processRequest:self.next];
 }
 
 

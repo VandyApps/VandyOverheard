@@ -8,23 +8,41 @@
 
 #import <Foundation/Foundation.h>
 
+#import "VOFacebookRequestProtocol.h"
+
+@class VONewsFeed;
+
 /**
  * A request that can be passed to indicate
  * the parameters desired for fetching a newsfeed.
  */
-@interface VONewsFeedRequest : NSObject
+@interface VONewsFeedRequest : NSObject <VOFacebookRequestProtocol>
 
 /**
  * @abstract
- *  The newsfeed offset sent to Facebook.
+ *  A block that is executed when the
+ *  request has succeeded. This block
+ *  will contain an array of VOPost
+ *  objects representing the posts
+ *  that will go into the newsFeed.
+ *  This will also contain an object
+ *  representing the request for the
+ *  next set of posts in the newsfeed.
  */
-@property (nonatomic, assign) NSInteger offset;
+@property (nonatomic, copy) void(^successBlock)(NSArray *posts, VONewsFeedRequest *next);
 
 /**
  * @abstract
- *  The newsfeed limit sent to Facebook. This is the number
- *  of posts that are retrieved.
+ *  A block that is executed when the request
+ *  has failed.
  */
-@property (nonatomic, assign) NSInteger limit;
+@property (nonatomic, copy) void(^failureBlock)(NSError *error);
+
+/**
+ * @abstract
+ *  The parameters that
+ *  go into the newsfeed request.
+ */
+@property (nonatomic, copy) NSDictionary *params;
 
 @end

@@ -154,14 +154,6 @@ static CGFloat UserViewPadding = 15.0;
 
 @implementation VONewsFeedPostCell
 
-#pragma mark - Static Methods
-
-//+ (CGFloat)heightForCellWithPost:(VOPost *)post {
-    
-
-//}
-
-
 #pragma mark - Initialization
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style

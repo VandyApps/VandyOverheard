@@ -16,4 +16,6 @@
  */
 @interface VONewsFeedController : UIViewController
 
+// TODO: The newsfeed should take a property
+// of the store that it is using.
 @end

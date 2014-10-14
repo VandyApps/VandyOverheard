@@ -11,8 +11,6 @@
 		FC21317D19DD0C81002E624E /* VONewsFeedPostFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = FC21317C19DD0C81002E624E /* VONewsFeedPostFooter.m */; };
 		FC26EA3819D8C5CE00678927 /* VONetworkAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = FC26EA3719D8C5CE00678927 /* VONetworkAdapter.m */; };
 		FC26EA3919D8C5CE00678927 /* VONetworkAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = FC26EA3719D8C5CE00678927 /* VONetworkAdapter.m */; };
-		FC26EA3C19D8CADB00678927 /* VONewsFeed.m in Sources */ = {isa = PBXBuildFile; fileRef = FC26EA3B19D8CADB00678927 /* VONewsFeed.m */; };
-		FC26EA3D19D8CADB00678927 /* VONewsFeed.m in Sources */ = {isa = PBXBuildFile; fileRef = FC26EA3B19D8CADB00678927 /* VONewsFeed.m */; };
 		FC36753519E757DA001FFC86 /* VOPhotoStore.m in Sources */ = {isa = PBXBuildFile; fileRef = FC36753419E757DA001FFC86 /* VOPhotoStore.m */; };
 		FC53118819E49F5D009AA70E /* VOAppContext.m in Sources */ = {isa = PBXBuildFile; fileRef = FC53118719E49F5D009AA70E /* VOAppContext.m */; };
 		FC53119119E4C6BA009AA70E /* VOFeedStore.m in Sources */ = {isa = PBXBuildFile; fileRef = FC53119019E4C6BA009AA70E /* VOFeedStore.m */; };
@@ -60,8 +58,6 @@
 		FC21317C19DD0C81002E624E /* VONewsFeedPostFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VONewsFeedPostFooter.m; sourceTree = "<group>"; };
 		FC26EA3619D8C5CE00678927 /* VONetworkAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VONetworkAdapter.h; path = VandyOverheard/VONetworkAdapter.h; sourceTree = "<group>"; };
 		FC26EA3719D8C5CE00678927 /* VONetworkAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VONetworkAdapter.m; path = VandyOverheard/VONetworkAdapter.m; sourceTree = "<group>"; };
-		FC26EA3A19D8CADB00678927 /* VONewsFeed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VONewsFeed.h; sourceTree = "<group>"; };
-		FC26EA3B19D8CADB00678927 /* VONewsFeed.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VONewsFeed.m; sourceTree = "<group>"; };
 		FC36753319E757DA001FFC86 /* VOPhotoStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VOPhotoStore.h; sourceTree = "<group>"; };
 		FC36753419E757DA001FFC86 /* VOPhotoStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VOPhotoStore.m; sourceTree = "<group>"; };
 		FC53118619E49F5D009AA70E /* VOAppContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VOAppContext.h; sourceTree = "<group>"; };
@@ -70,6 +66,8 @@
 		FC53118F19E4C6BA009AA70E /* VOFeedStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VOFeedStore.h; sourceTree = "<group>"; };
 		FC53119019E4C6BA009AA70E /* VOFeedStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VOFeedStore.m; sourceTree = "<group>"; };
 		FC659A0E19D5CD23009EFBBC /* VOLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VOLoginViewController.xib; sourceTree = "<group>"; };
+		FC74FEE219EDC64700615CC6 /* VOFacebookRequestProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = VOFacebookRequestProtocol.h; path = VandyOverheard/VOFacebookRequestProtocol.h; sourceTree = "<group>"; };
+		FC74FEE419EDDFF800615CC6 /* VOFeedStoreDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VOFeedStoreDelegate.h; sourceTree = "<group>"; };
 		FC81630C19D7CF9E00F33DF0 /* VOPost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VOPost.h; sourceTree = "<group>"; };
 		FC81630D19D7CF9E00F33DF0 /* VOPost.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VOPost.m; sourceTree = "<group>"; };
 		FC81631019D7D05700F33DF0 /* VOContent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VOContent.h; sourceTree = "<group>"; };
@@ -105,8 +103,8 @@
 		FCB1015F19E20390008E3508 /* BMAutolayoutMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BMAutolayoutMacros.h; sourceTree = "<group>"; };
 		FCBE2F2919D9C454008D3AFC /* VONetworkConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VONetworkConstants.h; path = VandyOverheard/VONetworkConstants.h; sourceTree = "<group>"; };
 		FCBE2F2A19D9C454008D3AFC /* VONetworkConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VONetworkConstants.m; path = VandyOverheard/VONetworkConstants.m; sourceTree = "<group>"; };
-		FCDA0FD119E9A8E800B4139C /* VONewsFeedRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VONewsFeedRequest.h; sourceTree = "<group>"; };
-		FCDA0FD219E9A8E800B4139C /* VONewsFeedRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VONewsFeedRequest.m; sourceTree = "<group>"; };
+		FCDA0FD119E9A8E800B4139C /* VONewsFeedRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VONewsFeedRequest.h; path = VandyOverheard/VONewsFeedRequest.h; sourceTree = "<group>"; };
+		FCDA0FD219E9A8E800B4139C /* VONewsFeedRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VONewsFeedRequest.m; path = VandyOverheard/VONewsFeedRequest.m; sourceTree = "<group>"; };
 		FCDA0FD419E9B27A00B4139C /* VONewsFeedLoadCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VONewsFeedLoadCell.h; sourceTree = "<group>"; };
 		FCDA0FD519E9B27A00B4139C /* VONewsFeedLoadCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VONewsFeedLoadCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -138,6 +136,9 @@
 				FCBE2F2A19D9C454008D3AFC /* VONetworkConstants.m */,
 				FC26EA3619D8C5CE00678927 /* VONetworkAdapter.h */,
 				FC26EA3719D8C5CE00678927 /* VONetworkAdapter.m */,
+				FC74FEE219EDC64700615CC6 /* VOFacebookRequestProtocol.h */,
+				FCDA0FD119E9A8E800B4139C /* VONewsFeedRequest.h */,
+				FCDA0FD219E9A8E800B4139C /* VONewsFeedRequest.m */,
 			);
 			name = API;
 			path = ..;
@@ -160,8 +161,6 @@
 				FC81631119D7D05700F33DF0 /* VOContent.m */,
 				FC81630C19D7CF9E00F33DF0 /* VOPost.h */,
 				FC81630D19D7CF9E00F33DF0 /* VOPost.m */,
-				FC26EA3A19D8CADB00678927 /* VONewsFeed.h */,
-				FC26EA3B19D8CADB00678927 /* VONewsFeed.m */,
 			);
 			name = Content;
 			sourceTree = "<group>";
@@ -181,8 +180,7 @@
 		FC97E48F19DB8038007F3B34 /* Stores */ = {
 			isa = PBXGroup;
 			children = (
-				FCDA0FD119E9A8E800B4139C /* VONewsFeedRequest.h */,
-				FCDA0FD219E9A8E800B4139C /* VONewsFeedRequest.m */,
+				FC74FEE419EDDFF800615CC6 /* VOFeedStoreDelegate.h */,
 				FC53118F19E4C6BA009AA70E /* VOFeedStore.h */,
 				FC53119019E4C6BA009AA70E /* VOFeedStore.m */,
 				FC86AB7319DB9CCA00270842 /* VOProfilePictureStore.h */,
@@ -426,7 +424,6 @@
 				FC86AB7919DBA31200270842 /* VOProfilePictureView.m in Sources */,
 				FC53119119E4C6BA009AA70E /* VOFeedStore.m in Sources */,
 				FC81630E19D7CF9E00F33DF0 /* VOPost.m in Sources */,
-				FC26EA3C19D8CADB00678927 /* VONewsFeed.m in Sources */,
 				FCDA0FD319E9A8E800B4139C /* VONewsFeedRequest.m in Sources */,
 				FC9B954219D5A8E900D99541 /* VOLoginViewController.m in Sources */,
 			);
@@ -437,7 +434,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				FC9B954719D5ABDB00D99541 /* VOLoginFlowController.m in Sources */,
-				FC26EA3D19D8CADB00678927 /* VONewsFeed.m in Sources */,
 				FC9B91EE19D52B5400D99541 /* VandyOverheardTests.m in Sources */,
 				FC9B954319D5A8E900D99541 /* VOLoginViewController.m in Sources */,
 				FC26EA3919D8C5CE00678927 /* VONetworkAdapter.m in Sources */,

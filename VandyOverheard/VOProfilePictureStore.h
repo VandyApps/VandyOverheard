@@ -9,7 +9,6 @@
 #import <FacebookSDK/FacebookSDK.h>
 #import <Foundation/Foundation.h>
 
-@class VONewsFeed;
 @class VOUser;
 
 @interface VOProfilePictureStore : NSObject
@@ -23,12 +22,12 @@
 /**
  * @abstract
  *  Begin downloading the profile pictures associated
- *  with the newsfeed.
+ *  with the set of posts.
  *
- * @param feed The newsfeed to download the profile
- *  pictures for.
+ * @param posts An array of VOPost objects. All profile
+ *  pictures that are related to these posts are fetched.
  */
-- (void)downloadProfilePicturesForNewsFeed:(VONewsFeed *)feed;
+- (void)downloadProfilePicturesForPosts:(NSArray *)posts;
 
 /**
  * @abstract
