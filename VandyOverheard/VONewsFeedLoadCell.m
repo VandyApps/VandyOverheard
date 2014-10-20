@@ -16,7 +16,7 @@
  * @abstract
  *  The load indicator inside the load view.
  */
-@property (nonatomic, strong) UIActivityIndicatorView *loadView;
+@property (nonatomic, strong) UIActivityIndicatorView *loadIndicatorView;
 
 /**
  * @abstract
@@ -37,7 +37,7 @@
 #pragma mark - Accessors
 
 - (BOOL)isAnimating {
-    return _loadView.isAnimating;
+    return _loadIndicatorView.isAnimating;
 }
 
 
@@ -46,11 +46,11 @@
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        _loadView = [[UIActivityIndicatorView alloc] init];
-        [self addSubview:_loadView];
+        _loadIndicatorView = [[UIActivityIndicatorView alloc] init];
+        [self addSubview:_loadIndicatorView];
         
         [self layoutLoadView];
-        self.loadView.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
+        self.loadIndicatorView.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
     }
     return self;
 }
@@ -59,19 +59,19 @@
 #pragma mark - ActivityIndicator
 
 - (void)startAnimating {
-    [self.loadView startAnimating];
+    [self.loadIndicatorView startAnimating];
 }
 
 
 #pragma mark - Layout
 
 - (void)layoutLoadView {
-    NSAssert(self.loadView != nil, @"loadView must be initialized before calling layoutLoadView.");
-    NSAssert(self.loadView.superview == self, @"loadView must be added to view hierarchy correctly.");
+    NSAssert(self.loadIndicatorView != nil, @"loadView must be initialized before calling layoutLoadView.");
+    NSAssert(self.loadIndicatorView.superview == self, @"loadView must be added to view hierarchy correctly.");
     
-    NSArray *constraints = [BMAutolayoutBuilder constraintsForCenterView:self.loadView];
+    NSArray *constraints = [BMAutolayoutBuilder constraintsForCenterView:self.loadIndicatorView];
     
-    self.loadView.translatesAutoresizingMaskIntoConstraints = NO;
+    self.loadIndicatorView.translatesAutoresizingMaskIntoConstraints = NO;
     [self addConstraints:constraints];
 }
 

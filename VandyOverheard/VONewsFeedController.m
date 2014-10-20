@@ -27,6 +27,14 @@
 
 /**
  * @abstract
+ *  Load view that appears when
+ *  the feed is loading for the
+ *  first time.
+ */
+@property (nonatomic, strong) UIActivityIndicatorView *loadIndicatorView;
+
+/**
+ * @abstract
  *  The table view that is presenting the news feed.
  */
 @property (nonatomic, strong) UITableView *tableView;
@@ -47,6 +55,19 @@
  *  is initialized and added to the view hierarchy.
  */
 - (void)layoutTableView;
+
+/**
+ * @abstract
+ *  Set the autolayout constraints for the loadView
+ *  property.
+ *
+ * @discussion
+ *  This method assumes that the loadView property
+ *  is initialized and added to the view hierarchy
+ *  as a child of the parent view.
+ */
+- (void)layoutLoadIndicatorView;
+
 
 /**
  * @abstract
@@ -95,7 +116,7 @@ static NSString *const LoadCellId = @"LoadCell";
     self.title = @"Vandy Overheard";
     self.cellHeightHash = [[NSMutableDictionary alloc] init];
     
-    self.view.backgroundColor = [UIColor whiteColor];
+    // self.view.backgroundColor = [UIColor whiteColor];
 
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self
@@ -112,7 +133,14 @@ static NSString *const LoadCellId = @"LoadCell";
     [self.view addSubview:self.tableView];
     [self.tableView addSubview:self.refreshControl];
     
+    self.loadIndicatorView = [[UIActivityIndicatorView alloc] init];
+    self.loadIndicatorView.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
+    
+    [self.view addSubview:self.loadIndicatorView];
+    [self.view bringSubviewToFront:self.loadIndicatorView];
+    
     [self layoutTableView];
+    [self layoutLoadIndicatorView];
 
     
     [self.tableView registerClass:[VONewsFeedPostCell class]
@@ -122,6 +150,8 @@ static NSString *const LoadCellId = @"LoadCell";
     
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
+    [self.loadIndicatorView startAnimating];
     
     // TODO: Better to use Notification Center
     // than delegation if this object
@@ -238,10 +268,10 @@ static NSString *const LoadCellId = @"LoadCell";
 
 - (void)feedStore:(VOFeedStore *)store didUpdateWithDelta:(NSInteger)delta {
 
-    if ([self.refreshControl isRefreshing]) {
-        [self.refreshControl endRefreshing];
-    }
-
+    // Stop any load indicators that may be presenting.
+    [self.loadIndicatorView stopAnimating];
+    [self.refreshControl endRefreshing];
+    
     [[VOAppContext sharedInstance].profilePictureStore downloadProfilePicturesForPosts:store.posts];
 
     // TODO: Better way to do this.
@@ -270,6 +300,13 @@ static NSString *const LoadCellId = @"LoadCell";
                                                         withInsets:UIEdgeInsetsZero];
     
     self.tableView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.view addConstraints:constraints];
+}
+
+
+- (void)layoutLoadIndicatorView {
+    NSArray *constraints = [BMAutolayoutBuilder constraintsForCenterView:self.loadIndicatorView];
+    self.loadIndicatorView.translatesAutoresizingMaskIntoConstraints = NO;
     [self.view addConstraints:constraints];
 }
 
