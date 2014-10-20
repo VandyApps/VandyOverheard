@@ -9,15 +9,19 @@
 #import "VONewsFeedController.h"
 
 #import "BMAutolayoutBuilder.h"
+#import "JTSImageViewController.h"
+
 #import "VOAppContext.h"
 #import "VOFeedStore.h"
 #import "VOFeedStoreDelegate.h"
 #import "VONewsFeedLoadCell.h"
 #import "VONewsFeedPostCell.h"
+#import "VONewsFeedPostCellDelegate.h"
 #import "VOPost.h"
 #import "VOProfilePictureStore.h"
 
-@interface VONewsFeedController () <UITableViewDataSource, UITableViewDelegate, VOFeedStoreDelegate>
+@interface VONewsFeedController () <UITableViewDataSource, UITableViewDelegate,
+                                    VOFeedStoreDelegate, VONewsFeedPostCellDelegate>
 
 /**
  * @abstract
@@ -195,6 +199,7 @@ static NSString *const LoadCellId = @"LoadCell";
                                                                    forIndexPath:indexPath];
         
         cell.post = feedStore.posts[indexPath.row];
+        cell.delegate = self;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }
@@ -292,6 +297,28 @@ static NSString *const LoadCellId = @"LoadCell";
         [self refreshTableWithDelta:delta];
     }
     
+}
+
+
+#pragma mark - VONewsFeedPostCellDelegate Methods
+
+- (void)newsFeedPostCell:(VONewsFeedPostCell *)cell didSelectImageView:(UIImageView *)imageView {
+    JTSImageInfo *imageInfo = [[JTSImageInfo alloc] init];
+    imageInfo.referenceView = self.view;
+
+    CGRect frame = [cell convertRect:imageView.frame toView:self.view];
+    imageInfo.referenceRect = frame;
+    
+    imageInfo.image = imageView.image;
+    
+    // Setup view controller
+    JTSImageViewController *imageViewer = [[JTSImageViewController alloc]
+                                           initWithImageInfo:imageInfo
+                                           mode:JTSImageViewControllerMode_Image
+                                           backgroundStyle:JTSImageViewControllerBackgroundStyle_ScaledDimmedBlurred];
+    
+    // Present the view controller.
+    [imageViewer showFromViewController:self transition:JTSImageViewControllerTransition_FromOriginalPosition];
 }
 
 

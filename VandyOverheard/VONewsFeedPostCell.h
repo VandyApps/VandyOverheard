@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+#import "VONewsFeedPostCellDelegate.h"
+
 @class VOPost;
 
 @interface VONewsFeedPostCell : UITableViewCell
@@ -18,6 +20,12 @@
  *  the given post.
  */
 + (CGFloat)estimatedHeightForPost:(VOPost *)post;
+
+/**
+ * @abstract
+ *  Delegate for handling events fired by the post cell.
+ */
+@property (nonatomic, weak) id<VONewsFeedPostCellDelegate> delegate;
 
 /**
  * @abstract

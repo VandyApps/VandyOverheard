@@ -67,6 +67,13 @@ static CGFloat UserViewPadding = 15.0;
 
 /**
  * @abstract
+ *  Event handler for when the pictureView
+ *  property is tapped.
+ */
+- (void)didTapPictureView:(id)sender;
+
+/**
+ * @abstract
  *  Add the layout constraints to the
  *  author label.
  *
@@ -230,9 +237,31 @@ static CGFloat UserViewPadding = 15.0;
         [self addSubview:_footer];
         [self layoutFooter];
         
+        // Add event handling here.
+        UITapGestureRecognizer *tapGesture =
+            [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapPictureView:)];
+        
+        [_pictureView addGestureRecognizer:tapGesture];
+        [_pictureView setUserInteractionEnabled:YES];
+        
         _contentLabel.numberOfLines = 10;
     }
     return self;
+}
+
+
+#pragma mark - Events
+
+- (void)didTapPictureView:(id)sender {
+    NSAssert([sender isKindOfClass:[UITapGestureRecognizer class]],
+             @"This event should only be called on a tap gesture.");
+    NSAssert(self.post.picture != nil, @"ImageView tap event was fired even though post has no picture.");
+    
+    // Double check to make sure that the post has a picture
+    // before calling this method.
+    if (self.delegate) {
+        [self.delegate newsFeedPostCell:self didSelectImageView:self.pictureView];
+    }
 }
 
 

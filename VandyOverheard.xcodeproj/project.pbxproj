@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		FC17673E19DB3650007085D3 /* VONewsFeedPostCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FC17673D19DB3650007085D3 /* VONewsFeedPostCell.m */; };
+		FC19D73919F5A8DB002F5BCC /* JTSAnimatedGIFUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = FC19D72E19F5A8DB002F5BCC /* JTSAnimatedGIFUtility.m */; };
+		FC19D73A19F5A8DB002F5BCC /* JTSImageInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = FC19D73019F5A8DB002F5BCC /* JTSImageInfo.m */; };
+		FC19D73B19F5A8DB002F5BCC /* JTSImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC19D73219F5A8DB002F5BCC /* JTSImageViewController.m */; };
+		FC19D73C19F5A8DB002F5BCC /* JTSSimpleImageDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = FC19D73419F5A8DB002F5BCC /* JTSSimpleImageDownloader.m */; };
+		FC19D73D19F5A8DB002F5BCC /* UIApplication+JTSImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC19D73619F5A8DB002F5BCC /* UIApplication+JTSImageViewController.m */; };
+		FC19D73E19F5A8DB002F5BCC /* UIImage+JTSImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = FC19D73819F5A8DB002F5BCC /* UIImage+JTSImageEffects.m */; };
 		FC21317D19DD0C81002E624E /* VONewsFeedPostFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = FC21317C19DD0C81002E624E /* VONewsFeedPostFooter.m */; };
 		FC26EA3819D8C5CE00678927 /* VONetworkAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = FC26EA3719D8C5CE00678927 /* VONetworkAdapter.m */; };
 		FC26EA3919D8C5CE00678927 /* VONetworkAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = FC26EA3719D8C5CE00678927 /* VONetworkAdapter.m */; };
@@ -54,6 +60,19 @@
 /* Begin PBXFileReference section */
 		FC17673C19DB3650007085D3 /* VONewsFeedPostCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VONewsFeedPostCell.h; sourceTree = "<group>"; };
 		FC17673D19DB3650007085D3 /* VONewsFeedPostCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VONewsFeedPostCell.m; sourceTree = "<group>"; };
+		FC19D72D19F5A8DB002F5BCC /* JTSAnimatedGIFUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JTSAnimatedGIFUtility.h; path = Source/JTSAnimatedGIFUtility.h; sourceTree = "<group>"; };
+		FC19D72E19F5A8DB002F5BCC /* JTSAnimatedGIFUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JTSAnimatedGIFUtility.m; path = Source/JTSAnimatedGIFUtility.m; sourceTree = "<group>"; };
+		FC19D72F19F5A8DB002F5BCC /* JTSImageInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JTSImageInfo.h; path = Source/JTSImageInfo.h; sourceTree = "<group>"; };
+		FC19D73019F5A8DB002F5BCC /* JTSImageInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JTSImageInfo.m; path = Source/JTSImageInfo.m; sourceTree = "<group>"; };
+		FC19D73119F5A8DB002F5BCC /* JTSImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JTSImageViewController.h; path = Source/JTSImageViewController.h; sourceTree = "<group>"; };
+		FC19D73219F5A8DB002F5BCC /* JTSImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JTSImageViewController.m; path = Source/JTSImageViewController.m; sourceTree = "<group>"; };
+		FC19D73319F5A8DB002F5BCC /* JTSSimpleImageDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JTSSimpleImageDownloader.h; path = Source/JTSSimpleImageDownloader.h; sourceTree = "<group>"; };
+		FC19D73419F5A8DB002F5BCC /* JTSSimpleImageDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JTSSimpleImageDownloader.m; path = Source/JTSSimpleImageDownloader.m; sourceTree = "<group>"; };
+		FC19D73519F5A8DB002F5BCC /* UIApplication+JTSImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIApplication+JTSImageViewController.h"; path = "Source/UIApplication+JTSImageViewController.h"; sourceTree = "<group>"; };
+		FC19D73619F5A8DB002F5BCC /* UIApplication+JTSImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIApplication+JTSImageViewController.m"; path = "Source/UIApplication+JTSImageViewController.m"; sourceTree = "<group>"; };
+		FC19D73719F5A8DB002F5BCC /* UIImage+JTSImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+JTSImageEffects.h"; path = "Source/UIImage+JTSImageEffects.h"; sourceTree = "<group>"; };
+		FC19D73819F5A8DB002F5BCC /* UIImage+JTSImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+JTSImageEffects.m"; path = "Source/UIImage+JTSImageEffects.m"; sourceTree = "<group>"; };
+		FC19D73F19F5ADF4002F5BCC /* VONewsFeedPostCellDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VONewsFeedPostCellDelegate.h; sourceTree = "<group>"; };
 		FC21317B19DD0C81002E624E /* VONewsFeedPostFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VONewsFeedPostFooter.h; sourceTree = "<group>"; };
 		FC21317C19DD0C81002E624E /* VONewsFeedPostFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VONewsFeedPostFooter.m; sourceTree = "<group>"; };
 		FC26EA3619D8C5CE00678927 /* VONetworkAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VONetworkAdapter.h; path = VandyOverheard/VONetworkAdapter.h; sourceTree = "<group>"; };
@@ -129,6 +148,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FC19D72619F5A67F002F5BCC /* Vendors */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Vendors;
+			sourceTree = "<group>";
+		};
+		FC19D72B19F5A8BD002F5BCC /* JTSImageViewController */ = {
+			isa = PBXGroup;
+			children = (
+				FC19D72D19F5A8DB002F5BCC /* JTSAnimatedGIFUtility.h */,
+				FC19D72E19F5A8DB002F5BCC /* JTSAnimatedGIFUtility.m */,
+				FC19D72F19F5A8DB002F5BCC /* JTSImageInfo.h */,
+				FC19D73019F5A8DB002F5BCC /* JTSImageInfo.m */,
+				FC19D73119F5A8DB002F5BCC /* JTSImageViewController.h */,
+				FC19D73219F5A8DB002F5BCC /* JTSImageViewController.m */,
+				FC19D73319F5A8DB002F5BCC /* JTSSimpleImageDownloader.h */,
+				FC19D73419F5A8DB002F5BCC /* JTSSimpleImageDownloader.m */,
+				FC19D73519F5A8DB002F5BCC /* UIApplication+JTSImageViewController.h */,
+				FC19D73619F5A8DB002F5BCC /* UIApplication+JTSImageViewController.m */,
+				FC19D73719F5A8DB002F5BCC /* UIImage+JTSImageEffects.h */,
+				FC19D73819F5A8DB002F5BCC /* UIImage+JTSImageEffects.m */,
+			);
+			name = JTSImageViewController;
+			sourceTree = "<group>";
+		};
 		FC26EA3519D8C59200678927 /* API */ = {
 			isa = PBXGroup;
 			children = (
@@ -213,6 +258,8 @@
 		FC9B91D019D52B5400D99541 /* VandyOverheard */ = {
 			isa = PBXGroup;
 			children = (
+				FC19D72B19F5A8BD002F5BCC /* JTSImageViewController */,
+				FC19D72619F5A67F002F5BCC /* Vendors */,
 				FC9B91D519D52B5400D99541 /* AppDelegate.h */,
 				FC9B91D619D52B5400D99541 /* AppDelegate.m */,
 				FCB1015B19E200BA008E3508 /* Utils */,
@@ -284,6 +331,7 @@
 			children = (
 				FCA1051B19D7C08400072D79 /* VONewsFeedController.h */,
 				FCA1051C19D7C08400072D79 /* VONewsFeedController.m */,
+				FC19D73F19F5ADF4002F5BCC /* VONewsFeedPostCellDelegate.h */,
 				FC17673C19DB3650007085D3 /* VONewsFeedPostCell.h */,
 				FC17673D19DB3650007085D3 /* VONewsFeedPostCell.m */,
 				FC21317B19DD0C81002E624E /* VONewsFeedPostFooter.h */,
@@ -411,6 +459,7 @@
 				FC9B91D419D52B5400D99541 /* main.m in Sources */,
 				FC9B954619D5ABDB00D99541 /* VOLoginFlowController.m in Sources */,
 				FC9B953E19D5A8A900D99541 /* VODesignFactory.m in Sources */,
+				FC19D73919F5A8DB002F5BCC /* JTSAnimatedGIFUtility.m in Sources */,
 				FC53118819E49F5D009AA70E /* VOAppContext.m in Sources */,
 				FCDA0FD619E9B27A00B4139C /* VONewsFeedLoadCell.m in Sources */,
 				FC17673E19DB3650007085D3 /* VONewsFeedPostCell.m in Sources */,
@@ -418,14 +467,19 @@
 				FCA1051D19D7C08400072D79 /* VONewsFeedController.m in Sources */,
 				FCBE2F2B19D9C454008D3AFC /* VONetworkConstants.m in Sources */,
 				FCB1015E19E200D3008E3508 /* BMAutolayoutBuilder.m in Sources */,
+				FC19D73B19F5A8DB002F5BCC /* JTSImageViewController.m in Sources */,
 				FC86AB7519DB9CCA00270842 /* VOProfilePictureStore.m in Sources */,
 				FC36753519E757DA001FFC86 /* VOPhotoStore.m in Sources */,
+				FC19D73E19F5A8DB002F5BCC /* UIImage+JTSImageEffects.m in Sources */,
+				FC19D73A19F5A8DB002F5BCC /* JTSImageInfo.m in Sources */,
 				FC26EA3819D8C5CE00678927 /* VONetworkAdapter.m in Sources */,
 				FC86AB7919DBA31200270842 /* VOProfilePictureView.m in Sources */,
 				FC53119119E4C6BA009AA70E /* VOFeedStore.m in Sources */,
 				FC81630E19D7CF9E00F33DF0 /* VOPost.m in Sources */,
 				FCDA0FD319E9A8E800B4139C /* VONewsFeedRequest.m in Sources */,
+				FC19D73C19F5A8DB002F5BCC /* JTSSimpleImageDownloader.m in Sources */,
 				FC9B954219D5A8E900D99541 /* VOLoginViewController.m in Sources */,
+				FC19D73D19F5A8DB002F5BCC /* UIApplication+JTSImageViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
