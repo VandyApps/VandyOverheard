@@ -115,8 +115,6 @@ static NSString *const LoadCellId = @"LoadCell";
     [super viewDidLoad];
     self.title = @"Vandy Overheard";
     self.cellHeightHash = [[NSMutableDictionary alloc] init];
-    
-    // self.view.backgroundColor = [UIColor whiteColor];
 
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self
@@ -216,11 +214,20 @@ static NSString *const LoadCellId = @"LoadCell";
 
 
 - (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    VOFeedStore *store = [VOAppContext sharedInstance].feedStore;
+    if (indexPath.row >= [store.posts count]) {
+        // Getting the index path of the load cell.
+        return 44.f;
+    }
+    
     if (self.cellHeightHash[indexPath]) {
-        [self.cellHeightHash[indexPath] integerValue];
+        return [self.cellHeightHash[indexPath] integerValue];
     }
     // Better approximation needed here.
-    return 44.f;
+    VOPost *post = [store.posts objectAtIndex:indexPath.row];
+    CGFloat height = [VONewsFeedPostCell estimatedHeightForPost:post];
+    NSLog(@"%g", height);
+    return height;
 }
 
 

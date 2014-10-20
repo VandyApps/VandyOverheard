@@ -14,6 +14,13 @@
 
 /**
  * @abstract
+ *  Get the estimated height of a cell that is presenting
+ *  the given post.
+ */
++ (CGFloat)estimatedHeightForPost:(VOPost *)post;
+
+/**
+ * @abstract
  *  The post being displayed by the cell.
  */
 @property (nonatomic, strong) VOPost *post;

@@ -154,6 +154,31 @@ static CGFloat UserViewPadding = 15.0;
 
 @implementation VONewsFeedPostCell
 
+#pragma mark - Static Methods
+
++ (CGFloat)estimatedHeightForPost:(VOPost *)post {
+    CGFloat height = 0;
+    
+    // Calculate approximate height of text. Estimate
+    // 35 characters per line and 20 points per line.
+    height += ([post.body length] / 35) * 20;
+    
+    // If the post has a picture, estimate that the height of
+    // the picture is 100 points.
+    if (post.picture) {
+        height += 100;
+    }
+    
+    // Add the height of the footer
+    height += [VONewsFeedPostFooter height];
+    
+    // Increment to account for underestimation
+    height += 60;
+    
+    return height;
+}
+
+
 #pragma mark - Initialization
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style
