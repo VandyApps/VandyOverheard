@@ -226,7 +226,6 @@ static NSString *const LoadCellId = @"LoadCell";
     // Better approximation needed here.
     VOPost *post = [store.posts objectAtIndex:indexPath.row];
     CGFloat height = [VONewsFeedPostCell estimatedHeightForPost:post];
-    NSLog(@"%g", height);
     return height;
 }
 
