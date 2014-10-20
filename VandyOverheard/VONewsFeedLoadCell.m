@@ -34,6 +34,13 @@
 
 @implementation VONewsFeedLoadCell
 
+#pragma mark - Accessors
+
+- (BOOL)isAnimating {
+    return _loadView.isAnimating;
+}
+
+
 #pragma mark - Initialization
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
@@ -44,9 +51,15 @@
         
         [self layoutLoadView];
         self.loadView.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
-        [self.loadView startAnimating];
     }
     return self;
+}
+
+
+#pragma mark - ActivityIndicator
+
+- (void)startAnimating {
+    [self.loadView startAnimating];
 }
 
 

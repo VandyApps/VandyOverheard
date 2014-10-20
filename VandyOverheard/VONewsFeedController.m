@@ -146,6 +146,8 @@ static NSString *const LoadCellId = @"LoadCell";
         // This is the last cell in the table view.
         VONewsFeedLoadCell *cell = [tableView dequeueReusableCellWithIdentifier:LoadCellId
                                                                    forIndexPath:indexPath];
+
+        [cell startAnimating];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
         // Whenever the load cell is reached in the table view,

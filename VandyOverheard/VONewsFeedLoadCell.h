@@ -15,5 +15,18 @@
  */
 @interface VONewsFeedLoadCell : UITableViewCell
 
+/**
+ * @abstract
+ *  YES if the cell is animating an activity
+ *  indicator, NO otherwise.
+ */
+@property (nonatomic, assign, readonly) BOOL isAnimating;
+
+/**
+ * @abstract
+ *  Starts animating the activity
+ *  indicator in the cell.
+ */
+- (void)startAnimating;
 
 @end
