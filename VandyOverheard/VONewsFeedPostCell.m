@@ -441,42 +441,15 @@ static CGFloat UserViewPadding = 15.0;
     NSDictionary *views =
         NSDictionaryOfVariableBindings(_footer, _contentLabel, _likeButton, _pictureView);
     
-    //if (self.post.picture) {
-        // If the current post has an image,
-        // then layout the footer with respect
-        // to the image.
-        static NSString *const verticalVFL = @"V:[_pictureView]->=top-[_footer]|";
-        NSArray *verticalConstraints =
-            [NSLayoutConstraint constraintsWithVisualFormat:verticalVFL
-                                                    options:0
-                                                    metrics:metrics
-                                                      views:views];
-        
-        [superview addConstraints:verticalConstraints];
-        
-    //}
-    /*else {
-        // The current post has no image. Layout
-        // the post without considering the image.
-        static NSString *const verticalVFL1 = @"V:[_contentLabel]->=top-[_footer]|";
-        static NSString *const verticalVFL2 = @"V:[_likeButton]->=top-[_footer]|";
-        
-        NSArray *verticalConstraints1 =
-        [NSLayoutConstraint constraintsWithVisualFormat:verticalVFL1
+
+    static NSString *const verticalVFL = @"V:[_pictureView]->=top-[_footer]|";
+    NSArray *verticalConstraints =
+        [NSLayoutConstraint constraintsWithVisualFormat:verticalVFL
                                                 options:0
                                                 metrics:metrics
                                                   views:views];
-        
-        NSArray *verticalConstraints2 =
-        [NSLayoutConstraint constraintsWithVisualFormat:verticalVFL2
-                                                options:0
-                                                metrics:metrics
-                                                  views:views];
-        [superview addConstraints:verticalConstraints1];
-        [superview addConstraints:verticalConstraints2];
-    }*/
     
-    
+    [superview addConstraints:verticalConstraints];
 
     // Horizontal layout is the same with or without an image.
     static NSString *const horizonalVFL = @"H:|[_footer]|";

@@ -72,7 +72,8 @@ typedef void(^VONewsFeedBlock)(NSInteger delta);
 /**
  * @abstract
  *  Get the first set of posts from the news
- *  feed.
+ *  feed. The delegate is called when the newsfeed
+ *  has been fetched.
  *
  * @discussion
  *  This method should only be called on the
@@ -87,7 +88,8 @@ typedef void(^VONewsFeedBlock)(NSInteger delta);
  * @abstract
  *  Get the next set of posts from the newsfeed.
  *  fetchFirstPage must be called at least once
- *  before calling this method.
+ *  before calling this method. The delegate is called
+ *  when the page has been fetched.
  *
  * @discussion
  *  This method should only be called on the main

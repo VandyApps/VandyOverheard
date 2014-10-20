@@ -63,7 +63,7 @@ static NSString *const FacebookGroupId = @"2255709804";
     // ( https://graph.facebook.com/v2.1/group-id/feed? )
     
     NSInteger groupIdLength = [FacebookGroupId length];
-    NSString *paramPath = [[path substringFromIndex:37+groupIdLength] stringByRemovingPercentEncoding];
+    NSString *paramPath = [[path substringFromIndex:38+groupIdLength] stringByRemovingPercentEncoding];
     
     NSArray *keyValuePairs = [paramPath componentsSeparatedByString:@"&"];
     
@@ -87,11 +87,6 @@ static NSString *const FacebookGroupId = @"2255709804";
 - (NSString *)path {
     return [FacebookGroupId stringByAppendingString:@"/feed"];
 }
-             /*@"fields": @"likes.summary(true),"
-                         "message,from,created_time,"
-                         "comments.summary(true),"
-                         "picture",*/
-
 
 
 - (void)successWithJson:(id)json {
@@ -99,6 +94,7 @@ static NSString *const FacebookGroupId = @"2255709804";
     // request for the next newsFeed.
     
     NSString *nextPath = json[NetworkConstantPaging][NetworkConstantNext];
+    
     
     self.successBlock([VONewsFeedRequest parseJson:json],
                       [VONewsFeedRequest requestFromAbsolutePath:nextPath]);
